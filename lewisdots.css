@@ -26,6 +26,7 @@
 	border:1px solid black;
 	display:inline-block;
 	vertical-align:top;
+	cursor:pointer;
 }
 .tool-active, .tool-inactive{
 	text-align:center;
