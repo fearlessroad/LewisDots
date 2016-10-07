@@ -31,14 +31,14 @@ var CreateElementObject = function(element){
 	}
 	return obj; 
 }
-C1 = CreateElementObject("C");
-C2 = CreateElementObject("C");
-C3 = CreateElementObject("N");
+// C1 = CreateElementObject("C");
+// C2 = CreateElementObject("C");
+// C3 = CreateElementObject("N");
 // console.log(C1)
-console.log(C2)
-C2.createBond(C1);
-console.log(C2)
-console.log(C1)
+// console.log(C2)
+// C2.createBond(C1);
+// console.log(C2)
+// console.log(C1)
 // console.log(CreateElementObject("C").name);
 // console.log(CreateElementObject("C").valence)
 // CreateElementObject("Carbon").createBond("Hydrogen").createBond("Carbon")

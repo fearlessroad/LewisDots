@@ -1,6 +1,4 @@
-// exercise taken from http://www.williammalone.com/articles/create-html5-canvas-javascript-drawing-app/
 $(document).ready(function(){ 
-	// var paint = require('paint');
 	var canvasDiv = document.getElementById('canvasDiv');
 	var canvasWidth = "700px"; 
 	var canvasHeight = "700px";
@@ -66,14 +64,22 @@ $(document).ready(function(){
 	$('#canvas').mousedown(function(e){
 		var mouseX = e.pageX - this.offsetLeft;
 		var mouseY = e.pageY - this.offsetTop; 
-		// paint = true;
-		// console.log(clickElement)
-		// console.log(clickElement.length)
-		// console.log(clickElement[clickElement.length-1])
-		addClick(mouseX, mouseY, false, false);
-		console.log(click)
-
-		// redraw();
+		if(click[click.length-1]){
+			if(click[click.length-1].behavior == "select"){
+				context.font = '20px helvetica';
+				context.fillText(click[click.length-1].element, mouseX, mouseY);
+				addClick(mouseX, mouseY, "placed", click[click.length-1].element);
+				console.log("placed "+click[click.length-1].element);
+			}
+			if(click[click.length-1].behavior == "placed"){
+				context.fond = '20px helvetica';
+				context.fillText(click[click.length-1].element, mouseX, mouseY);
+				addClick(mouseX, mouseY, "placed", click[click.length-1].element);
+				console.log("placed "+click[click.length-1].element);
+			}
+		}
+		// addClick(mouseX, mouseY, false, false);
+		console.log(click[click.length-1])
 	})
 
 	// $('#canvas').mousemove(function(e){
