@@ -1,25 +1,25 @@
 $(document).ready(function(){ 
-	var canvasDiv = document.getElementById('canvasDiv');
-	var canvasWidth = "700px"; 
-	var canvasHeight = "700px";
+	// var canvasDiv = document.getElementById('canvasDiv');
+	// var canvasWidth = "700px"; 
+	// var canvasHeight = "700px";
 
-	// create a canvas element 
-	canvas = document.createElement('canvas');
-	canvas.setAttribute('width', canvasWidth); //set the width 
-	canvas.setAttribute('height', canvasHeight); // set the height
-	canvas.setAttribute('id', 'canvas'); //give element an id
-	// canvasDiv.appendChild(canvas); //append element to the canvas div
+	// // create a canvas element 
+	// canvas = document.createElement('canvas');
+	// canvas.setAttribute('width', canvasWidth); //set the width 
+	// canvas.setAttribute('height', canvasHeight); // set the height
+	// canvas.setAttribute('id', 'canvas'); //give element an id
+	// // canvasDiv.appendChild(canvas); //append element to the canvas div
 
-	if(canvasDiv !== null){
-		canvasDiv.appendChild(canvas);
-	}
-	else{
-		console.log('did not append');
-	}
-	if(typeof G_vmlCanvasManager != 'undefined'){
-		canvas = G_vmlCanvasManager.initElement(canvas);
-	}
-	context = canvas.getContext("2d");
+	// if(canvasDiv !== null){
+	// 	canvasDiv.appendChild(canvas);
+	// }
+	// else{
+	// 	console.log('did not append');
+	// }
+	// if(typeof G_vmlCanvasManager != 'undefined'){
+	// 	canvas = G_vmlCanvasManager.initElement(canvas);
+	// }
+	// context = canvas.getContext("2d");
 
 
 	// addClick function that saves click position
@@ -33,6 +33,28 @@ $(document).ready(function(){
 			element: element
 		});
 	}
+
+	// var SVG = function(h,w){
+	// 	var NS = "http://www.w3.org/2000/svg";
+	// 	var svg = document.createElementNS(NS, "svg");
+	// 	svg.width = w;
+	// 	svg.height = h;
+	// 	return svg; 
+	// }
+	var canvas = document.getElementById("canvas");
+
+// var rect=function(h,w,fill){
+//  var NS="http://www.w3.org/2000/svg";
+//  var SVGObj= document.createElementNS(NS,"rect");
+//  SVGObj.width.baseVal.value=w;
+//  SVGObj.height.baseVal.value=h;
+//  SVGObj.setAttribute("height",h);
+//  SVGObj.style.fill=fill;
+//  console.log('created a rectangle')
+//  return SVGObj;
+// }
+
+
 
 	// magic drawing function
 
@@ -61,25 +83,29 @@ $(document).ready(function(){
 	// 		}
 	// 	}
 	// }
-	$('#canvas').mousedown(function(e){
+	$(canvas).mousedown(function(e){
+		console.log('clicked')
 		var mouseX = e.pageX - this.offsetLeft;
 		var mouseY = e.pageY - this.offsetTop; 
 		if(click[click.length-1]){
 			if(click[click.length-1].behavior == "select"){
-				context.font = '20px helvetica';
-				context.fillText(click[click.length-1].element, mouseX, mouseY);
-				addClick(mouseX, mouseY, "placed", click[click.length-1].element);
-				console.log("placed "+click[click.length-1].element);
+				html = "<text style='font-size:30;stroke: blue' x='10'  y='20'>Hello SVG World</text>";
+				$('#canvasDiv').appendHTML(html);
+				// context.font = '20px helvetica';
+				// context.fillText(click[click.length-1].element, mouseX, mouseY);
+				// addClick(mouseX, mouseY, "placed", click[click.length-1].element);
+				// console.log("placed "+click[click.length-1].element);
+				console.log($(this));
 			}
 			if(click[click.length-1].behavior == "placed"){
 				context.fond = '20px helvetica';
 				context.fillText(click[click.length-1].element, mouseX, mouseY);
 				addClick(mouseX, mouseY, "placed", click[click.length-1].element);
-				console.log("placed "+click[click.length-1].element);
+				// console.log("placed "+click[click.length-1].element);
 			}
 		}
 		// addClick(mouseX, mouseY, false, false);
-		console.log(click[click.length-1])
+		// console.log(click[click.length-1])
 	})
 
 	// $('#canvas').mousemove(function(e){

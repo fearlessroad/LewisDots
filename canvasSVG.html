@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Lewis Dots App</title>
+	<title>Lewis Dot App</title>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="app.js"></script>
 	<script src="objects.js"></script>
@@ -10,7 +10,13 @@
 </head>
 <body>
 <div id="container">
-	<div id="canvasDiv"></div>
+	<div id="canvasDiv">
+		<svg id="canvas" xmlns="http://www.w3.org/2000/svg" width="300" height="300">
+   			<text style="font-size:30;stroke: blue" x="10"  y="20">
+    				Hello SVG World
+   			</text>
+  		</svg>
+	</div>
 	<div id="toolBar">
 		<div class="tool-active">H</div><div class="tool-active">C</div><div class="tool-active">O</div><div class="tool-inactive">e-</div><div id="test">Test!</div>
 	</div>
