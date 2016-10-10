@@ -2,7 +2,7 @@
 	width:910px;
 	height:100vh;
 }
-.canvasDiv{
+#canvasDiv{
 	border:1px solid black;
 	height:700px;
 	width:700px;

@@ -10,12 +10,13 @@
 </head>
 <body>
 <div id="container">
-	<div id="canvasDiv">
+	<div class="canvasDiv">
 		<svg id="canvas" xmlns="http://www.w3.org/2000/svg" width="700" height="700">
   		</svg>
 	</div>
 	<div id="toolBar">
-		<div class="tool-active">H</div><div class="tool-active">C</div><div class="tool-active">O</div><div class="tool-active">e-</div><div class="tool-active">E</div><div class="tool-active">B</div><div id="test">Test!</div>
+	<!-- active tools and inactive tools -->
+		<div class="tool-active">H</div><div class="tool-active">C</div><div class="tool-active">O</div><div id="electron" class="tool-active"><img src="electron.svg"></div><div id="edit-svg" class="tool-active"><img src="resize_icon.png"></div><div id="single-bond" class="tool-active"><img src="single_bond.svg"></div><div id="double-bond" class="tool-inactive"><img src="double_bond.svg"></div><div id="triple-bond" class="tool-inactive"><img src="triple_bond.svg"></div><div id="back-bond" class="tool-inactive"><img src="back_bond.svg"></div><div id="front-bond" class="tool-inactive"><img src="front_bond.svg"></div><div id="test">Test!</div>
 	</div>
 </div>
 </body>
