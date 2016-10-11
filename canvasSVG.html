@@ -6,17 +6,21 @@
 	<script src="app.js"></script>
 	<script src="objects.js"></script>
 	<script src="raphael/raphael.min.js"></script>
+	<script type="text/javascript">
+	</script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	<link rel="stylesheet" type="text/css" href="lewisdots.css">
 </head>
 <body>
 <div id="container">
 	<div class="canvasDiv">
 		<svg id="canvas" xmlns="http://www.w3.org/2000/svg" width="700" height="700">
+			<text x="400" y="450" class="element ui-widget-content" font-size="50">H</text>
   		</svg>
 	</div>
 	<div id="toolBar">
 	<!-- active tools and inactive tools -->
-		<div class="tool-active">H</div><div class="tool-active">C</div><div class="tool-active">O</div><div id="electron" class="tool-active"><img src="electron.svg"></div><div id="edit-svg" class="tool-active"><img src="resize_icon.png"></div><div id="single-bond" class="tool-active"><img src="single_bond.svg"></div><div id="double-bond" class="tool-inactive"><img src="double_bond.svg"></div><div id="triple-bond" class="tool-inactive"><img src="triple_bond.svg"></div><div id="back-bond" class="tool-inactive"><img src="back_bond.svg"></div><div id="front-bond" class="tool-inactive"><img src="front_bond.svg"></div><div id="test">Test!</div>
+		<div class="tool-active">H</div><div class="tool-active">C</div><div class="tool-active">O</div><div id="electron" class="tool-active"><img src="electron.svg"></div><div id="edit-svg" class="tool-active"><img src="resize_icon.png"></div><div id="single-bond" class="tool-active"><img src="single_bond.svg"></div><div id="double-bond" class="tool-active"><img src="double_bond.svg"></div><div id="triple-bond" class="tool-active"><img src="triple_bond.svg"></div><div id="back-bond" class="tool-active"><img src="back_bond.svg"></div><div id="front-bond" class="tool-active"><img src="front_bond.svg"></div><div id="test">Test!</div><div id="clear">Clear</div><div id="export">Export</div>
 	</div>
 </div>
 </body>

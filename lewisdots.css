@@ -12,7 +12,7 @@
 }
 #toolBar{
 	height:700px;
-	width:104px;
+	width:100px;
 	background-color:white;
 	border:1px solid black;
 	margin:0 auto;
@@ -23,10 +23,15 @@
 	height:30px;
 	width:30px;
 	padding:10px;
-	border:1px solid black;
 	display:inline-block;
 	vertical-align:top;
 	cursor:pointer;
+}
+.tool-active:hover{
+	border:1px solid black;
+	padding:9px;
+	height:28px;
+	width:30px;
 }
 .tool-active, .tool-inactive{
 	text-align:center;
@@ -52,14 +57,36 @@
 }
 #test{
 	height:30px;
-	width:82px;
-	background-color:#3399ff;
+	width:78px;
+	background-color:#33cc33;
 	color:white;
-	border:1px solid #3399ff;
+	border:1px solid #33cc33;
 	padding:10px;
 	font-family:sans-serif;
 	letter-spacing:1px;
 	text-align:center;
 }
 #test:hover{
+}
+#clear{
+	height:30px;
+	width:78px;
+	background-color:#fc3b1d;
+	color:white;
+	border:1px solid #fc3b1d;
+	padding:10px;
+	font-family:sans-serif;
+	letter-spacing:1px;
+	text-align:center;
+}
+#export{
+	height:30px;
+	width:78px;
+	background-color:#9966ff;
+	color:white;
+	border:1px solid #9966ff;
+	padding:10px;
+	font-family:sans-serif;
+	letter-spacing:1px;
+	text-align:center;
 }

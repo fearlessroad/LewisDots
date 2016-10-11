@@ -1,6 +1,7 @@
 $(document).ready(function(){ 
 	var atomCount = 0;
 	var mousedown = false;
+	selected = null;
 	// addClick function that saves click position
 	var click = new Array();
 // each click is assigned a set of values 
@@ -49,19 +50,19 @@ $(document).ready(function(){
 	}
 //********end object functions**********************//
 
-	//*********drag the element function*************//
+	// //*********drag the element function*************//
 	function dragElement(thing){
 		selected = thing;
-		x_elem = x_pos - selected.offsetLeft; 
-		y_elem = y_pos - selected.offsetTop;
+		x0 = thing.x.baseVal[0].value; // element original x
+		y0 = thing.y.baseVal[0].value; // element original y
+		console.log(selected)
 	}
-	function moveElement(e){
-		x_pos = e.pageX;
-		y_pos = e.pageY;
-		if(selected != null){
-			selected.style.left = (x_pos - x_elem) + 'px';
-			selected.style.top = (y_pos - y_elem) + 'px';
-		}
+	function moveElement(){
+		console.log("am I here?")
+		// while(selected != null){
+			selected.x.baseVal[0].value = x0 - myx0;
+			selected.y.baseVal[0].value = y0 - my0;
+		// }
 	}
 	function destroy(){
 		selected = null;
@@ -91,19 +92,19 @@ $(document).ready(function(){
 
 
 	// $(".element").mousedown(function(e){ //this function MUST come first
+
 	$(document).on("mousedown", ".element", function(e){
 		mousedown = true; //set this to true in order to distinguish this element from the svg container
-		var x0 = this.x.baseVal[0].value; // element original x
-		var y0 = this.y.baseVal[0].value; // element original y
-		var mx0 = e.pageX; //mouse original x position
-		var my0 = e.pageY; //mouse original y position
-		console.log("original element position: "+x0+","+y0)
-		console.log("original mouse position: "+mx0+","+my0)
-
-	});
-
-
-	// $(".canvasDiv").mousedown(function(e){
+		mx0 = e.pageX; //mouse original x position
+		my0 = e.pageY; //mouse original y position
+		$(".element").draggable();
+	})
+	$(document).on("mousemove", ".element", function(e){
+		moveElement();
+	})
+	$(document).on("mouseup", ".element", function(e){
+		destroy();
+	})
 
 	$(document).on("mousedown", ".canvasDiv", function(e){
 		if (mousedown == true){
