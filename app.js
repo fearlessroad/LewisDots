@@ -55,7 +55,7 @@ $(document).ready(function(){
 		selected = thing;
 		x0 = thing.x.baseVal[0].value; // element original x
 		y0 = thing.y.baseVal[0].value; // element original y
-		console.log(selected)
+		console.log("am i in drag fxn yet?")
 	}
 	function moveElement(){
 		console.log("am I here?")
@@ -95,10 +95,16 @@ $(document).ready(function(){
 
 	$(document).on("mousedown", ".element", function(e){
 		mousedown = true; //set this to true in order to distinguish this element from the svg container
+		$(this).mousemove(function(){
+			console.log("moving?")
+		});
 		mx0 = e.pageX; //mouse original x position
 		my0 = e.pageY; //mouse original y position
-		$(".element").draggable();
-	})
+	}).mouseup(function({
+		$(this).unbind('mousemove');
+	}).mouseout(function(){
+		$(this).unbind('mousemove');
+	}));
 	$(document).on("mousemove", ".element", function(e){
 		moveElement();
 	})
