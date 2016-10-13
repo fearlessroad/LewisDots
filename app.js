@@ -56,12 +56,14 @@ $(document).ready(function(){
 		x0 = thing.x.baseVal[0].value; // element original x
 		y0 = thing.y.baseVal[0].value; // element original y
 		console.log("am i in drag fxn yet?")
+		console.log(thing);
+		console.log("1");
 	}
 	function moveElement(){
-		console.log("am I here?")
+		console.log("2")
 		// while(selected != null){
-			selected.x.baseVal[0].value = x0 - myx0;
-			selected.y.baseVal[0].value = y0 - my0;
+			// selected.x.baseVal[0].value = x0 - myx0;
+			// selected.y.baseVal[0].value = y0 - my0;
 		// }
 	}
 	function destroy(){
@@ -95,16 +97,11 @@ $(document).ready(function(){
 
 	$(document).on("mousedown", ".element", function(e){
 		mousedown = true; //set this to true in order to distinguish this element from the svg container
-		$(this).mousemove(function(){
-			console.log("moving?")
-		});
 		mx0 = e.pageX; //mouse original x position
 		my0 = e.pageY; //mouse original y position
-	}).mouseup(function({
-		$(this).unbind('mousemove');
-	}).mouseout(function(){
-		$(this).unbind('mousemove');
-	}));
+		dragElement(this);
+	})
+	// *****this seems to be firing BEFORE dragElement() and dragElement must go before moveElement. can't figure out what's happening.//
 	$(document).on("mousemove", ".element", function(e){
 		moveElement();
 	})
