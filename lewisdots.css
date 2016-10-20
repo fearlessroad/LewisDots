@@ -53,8 +53,15 @@
 	vertical-align:top;
 }
 .element{
-	cursor:pointer;
+	position:relative;
+	cursor:move;
+	width:30px;
 }
+/*#element{
+	position:relative;
+	cursor:move;
+	width:30px;
+}*/
 #test{
 	height:30px;
 	width:78px;
