@@ -23,11 +23,12 @@
 		function moveElement(evt){
 			console.log("inside moveElement function")
 			dx = evt.clientX - currentX;
-			dy = evt.clientX - currentY;
+			dy = evt.clientY - currentY;
 			console.log("this is dx: "+dx+" and this is dy: "+ dy)
 			currentMatrix[4] += dx;
 			currentMatrix[5] += dy;
 			newMatrix = "matrix("+currentMatrix.join(' ')+")";
+			console.log(newMatrix);
 
 			selectedElement.setAttributeNS(null, "transform", newMatrix);
 			currentX = evt.clientX;
