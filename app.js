@@ -9,6 +9,7 @@
 			currentX = evt.clientX;
 			console.log(selectedElement);
 			currentY = evt.clientY;
+			console.log("current X is: "+ currentX+ " and current Y is"+ currentY);
 			currentMatrix = selectedElement.getAttributeNS(null, "transform").slice(7, -1).split(' ');
 				for (var i=0; i<currentMatrix.length; i++){
 					currentMatrix[i] = parseFloat(currentMatrix[i]);
@@ -23,6 +24,7 @@
 			console.log("inside moveElement function")
 			dx = evt.clientX - currentX;
 			dy = evt.clientX - currentY;
+			console.log("this is dx: "+dx+" and this is dy: "+ dy)
 			currentMatrix[4] += dx;
 			currentMatrix[5] += dy;
 			newMatrix = "matrix("+currentMatrix.join(' ')+")";
@@ -112,46 +114,47 @@ $(document).ready(function(){
 	// 	selected = null;
 	// }
 	//<![CDATA[
-		var selectedElement = 0;
-		var currentX = 0;
-		var currentY = 0;
-		var currentMatrix = 0;
+		// var selectedElement = 0;
+		// var currentX = 0;
+		// var currentY = 0;
+		// var currentMatrix = 0;
 
-		function selectElement(evt){
-			selectedElement = evt.target;
-			currentX = evt.clientX;
-			currentY = evt.clientY;
-			currentMatrix = selectedElement.getAttributeNS(null, "transform").slice(7, -1).split(' ');
-				for (var i=0; i<currentMatrix.length; i++){
-					currentMatrix[i] = parseFloat(currentMatrix[i]);
-				}
-			selectedElement.setAttributeNS(null, "onmousemove", "moveElement(evt)");
-			selectedElement.setAttributeNS(null, "onmousemout", "deselectElement(evt)");
-			selectedElement.setAttributeNS(null, "onmouseup", "deselectElement(evt)");
-
-
-		}
-		function moveElement(evt){
-			dx = evt.clientX - currentX;
-			dy = evt.clientX - currentY;
-			currentMatrix[4] += dx;
-			currentMatrix[5] += dy;
-			newMatrix = "matrix("+currentMatrix.join(' ')+")";
-
-			selectedElement.setAttributeNS(null, "transform", newMatrix);
-			currentX = evt.clientX;
-			currentY = evt.clientY;
-		}
-		function deselectElement(evt){
-			if(selectedElement != 0){
-				selectedElement.removeAttributeNS(null, "onmousemove");
-				selectedElement.removeAttributeNS(null, "onmouseout");
-				selectedElement.removeAttributeNS(null, "onmouseup");
-				selectedElement = 0;
+		// function selectElement(evt){
+		// 	selectedElement = evt.target;
+		// 	currentX = evt.clientX;
+		// 	currentY = evt.clientY;
+		// 	currentMatrix = selectedElement.getAttributeNS(null, "transform").slice(7, -1).split(' ');
+		// 		for (var i=0; i<currentMatrix.length; i++){
+		// 			currentMatrix[i] = parseFloat(currentMatrix[i]);
+		// 		}
+		// 	selectedElement.setAttributeNS(null, "onmousemove", "moveElement(evt)");
+		// 	selectedElement.setAttributeNS(null, "onmousemout", "deselectElement(evt)");
+		// 	selectedElement.setAttributeNS(null, "onmouseup", "deselectElement(evt)");
 
 
-			}
-		}
+		// }
+		// function moveElement(evt){
+		// 	dx = evt.clientX - currentX;
+		// 	console.log("this is dx: "+dx);
+		// 	dy = evt.clientX - currentY;
+		// 	currentMatrix[4] += dx;
+		// 	currentMatrix[5] += dy;
+		// 	newMatrix = "matrix("+currentMatrix.join(' ')+")";
+
+		// 	selectedElement.setAttributeNS(null, "transform", newMatrix);
+		// 	currentX = evt.clientX;
+		// 	currentY = evt.clientY;
+		// }
+		// function deselectElement(evt){
+		// 	if(selectedElement != 0){
+		// 		selectedElement.removeAttributeNS(null, "onmousemove");
+		// 		selectedElement.removeAttributeNS(null, "onmouseout");
+		// 		selectedElement.removeAttributeNS(null, "onmouseup");
+		// 		selectedElement = 0;
+
+
+		// 	}
+		// }
 	//}]]>
 
 	//***********END DRAG METHOD*******************//
