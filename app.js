@@ -2,34 +2,26 @@
 		var currentX = 0;
 		var currentY = 0;
 		var currentMatrix = 0;
-
 		function selectElement(evt){
-			console.log("selected")
 			selectedElement = evt.target;
 			currentX = evt.clientX;
-			console.log(selectedElement);
 			currentY = evt.clientY;
-			console.log("current X is: "+ currentX+ " and current Y is"+ currentY);
 			currentMatrix = selectedElement.getAttributeNS(null, "transform").slice(7, -1).split(' ');
 				for (var i=0; i<currentMatrix.length; i++){
 					currentMatrix[i] = parseFloat(currentMatrix[i]);
 				}
-			selectedElement.setAttributeNS(null, "onmousemove", "moveElement(evt)");
+			// selectedElement.setAttributeNS(null, "onmousemove", "moveElement(evt)");
 			selectedElement.setAttributeNS(null, "onmousemout", "deselectElement(evt)");
 			selectedElement.setAttributeNS(null, "onmouseup", "deselectElement(evt)");
-
+			
 
 		}
 		function moveElement(evt){
-			console.log("inside moveElement function")
 			dx = evt.clientX - currentX;
 			dy = evt.clientY - currentY;
-			console.log("this is dx: "+dx+" and this is dy: "+ dy)
 			currentMatrix[4] += dx;
 			currentMatrix[5] += dy;
 			newMatrix = "matrix("+currentMatrix.join(' ')+")";
-			console.log(newMatrix);
-
 			selectedElement.setAttributeNS(null, "transform", newMatrix);
 			currentX = evt.clientX;
 			currentY = evt.clientY;
@@ -41,6 +33,7 @@
 				selectedElement.removeAttributeNS(null, "onmouseout");
 				selectedElement.removeAttributeNS(null, "onmouseup");
 				selectedElement = 0;
+				$(window).off("mousemove", moveElement(evt))
 			}
 		}
 $(document).ready(function(){ 
@@ -65,21 +58,22 @@ $(document).ready(function(){
 
 //********OBJECT FUNCTIONS***************************//
 	var count = 0;
+	var valence = null;
 	var CreateElementObject = function(element){
 			count += 1; 
-			if(element == "C"){
+			if(element.innerHTML == "C"){
 				name = "Carbon";
 				valence = 4;
 			}
-			else if(element == "H"){
+			else if(element.innerHTML == "H"){
 				name = "Hydrogen";
 				valence =  1;
 			}
-			else if(element == "O"){
+			else if(element.innerHTML == "O"){
 				name = "Oxygen";
 				valence = 6;
 			}
-			else if(element == "N"){
+			else if(element.innerHTML == "N"){
 				name = "Nitrogen";
 				valence = 5;
 			}
@@ -87,6 +81,7 @@ $(document).ready(function(){
 			id: count,
 			name: name,
 			valence: valence,
+			self: element,
 			bonds: [],
 			createBond: function(atom){
 				console.log("bond created between "+this.name+" and "+atom.name)
@@ -97,68 +92,7 @@ $(document).ready(function(){
 		}
 		return obj; 
 	}
-//********end object functions**********************//
 
-	// //*********drag the element function*************//
-	// function dragElement(thing){
-	// 	x0 = thing.x.baseVal[0].value; // element original x
-	// 	y0 = thing.y.baseVal[0].value; // element original y
-	// }
-	// function moveElement(){
-	// 	console.log("2")
-	// 	while(selected != null){
-	// 		selected.x.baseVal[0].value = x0 - mx0;
-	// 		selected.y.baseVal[0].value = y0 - my0;
-	// 	}
-	// }
-	// function destroy(){
-	// 	selected = null;
-	// }
-	//<![CDATA[
-		// var selectedElement = 0;
-		// var currentX = 0;
-		// var currentY = 0;
-		// var currentMatrix = 0;
-
-		// function selectElement(evt){
-		// 	selectedElement = evt.target;
-		// 	currentX = evt.clientX;
-		// 	currentY = evt.clientY;
-		// 	currentMatrix = selectedElement.getAttributeNS(null, "transform").slice(7, -1).split(' ');
-		// 		for (var i=0; i<currentMatrix.length; i++){
-		// 			currentMatrix[i] = parseFloat(currentMatrix[i]);
-		// 		}
-		// 	selectedElement.setAttributeNS(null, "onmousemove", "moveElement(evt)");
-		// 	selectedElement.setAttributeNS(null, "onmousemout", "deselectElement(evt)");
-		// 	selectedElement.setAttributeNS(null, "onmouseup", "deselectElement(evt)");
-
-
-		// }
-		// function moveElement(evt){
-		// 	dx = evt.clientX - currentX;
-		// 	console.log("this is dx: "+dx);
-		// 	dy = evt.clientX - currentY;
-		// 	currentMatrix[4] += dx;
-		// 	currentMatrix[5] += dy;
-		// 	newMatrix = "matrix("+currentMatrix.join(' ')+")";
-
-		// 	selectedElement.setAttributeNS(null, "transform", newMatrix);
-		// 	currentX = evt.clientX;
-		// 	currentY = evt.clientY;
-		// }
-		// function deselectElement(evt){
-		// 	if(selectedElement != 0){
-		// 		selectedElement.removeAttributeNS(null, "onmousemove");
-		// 		selectedElement.removeAttributeNS(null, "onmouseout");
-		// 		selectedElement.removeAttributeNS(null, "onmouseup");
-		// 		selectedElement = 0;
-
-
-		// 	}
-		// }
-	//}]]>
-
-	//***********END DRAG METHOD*******************//
 // logic for creating an atom on the canvas
 	var newAtom = function(x, y, hi){
 		var NS = "http://www.w3.org/2000/svg";
@@ -172,6 +106,7 @@ $(document).ready(function(){
 		element.setAttributeNS(null, "onmousedown", "selectElement(evt)");
 		element.innerHTML = hi;
 		element.id = createAtomId();
+		console.log(CreateElementObject(element));
 		document.getElementById("canvas").appendChild(element);
 	}
 // each atom is given an atom ID
@@ -192,8 +127,10 @@ $(document).ready(function(){
 		// selected = this;
 	});
 	// *****this seems to be firing BEFORE dragElement() and dragElement must go before moveElement. can't figure out what's happening.//
-	$(document).on("mousemove", ".element", function(e){
-		// moveElement();
+	$(document).on("mousemove", function(e){
+		if (selectedElement != 0){
+			moveElement(e);
+		}
 	})
 	$(document).on("mouseup", ".element", function(e){
 		// destroy();
