@@ -51,7 +51,6 @@
 
 		}
 $(document).ready(function(){ 
-	console.log(testVariable);
 	var atomCount = 0;
 	var mousedown = false;
 	selected = null;
