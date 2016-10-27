@@ -4,6 +4,7 @@
 	<title>Lewis Dot App</title>
 	<script src="bower_components/jquery/dist/jquery.min.js"></script>
 	<script src="app.js"></script>
+	<script src="test.js"></script>
 <!-- 	<script src="javascriptapp.js"></script> -->
 
 <!-- 	<script src="raphael/raphael.min.js"></script> -->
@@ -13,11 +14,12 @@
 <div id="container">
 	<div class="canvasDiv">
 		<svg id="canvas" xmlns="http://www.w3.org/2000/svg" width="700" height="700">
+			<line stroke="#000000" stroke-width="3" x1="5" y1="5.9" x2="400.4" y2="16.9"/>
   		</svg>
 	</div>
 	<div id="toolBar">
 	<!-- active tools and inactive tools -->
-		<div class="tool-active">H</div><div class="tool-active">C</div><div class="tool-active">O</div><div id="electron" class="tool-active"><img src="electron.svg"></div><div id="edit-svg" class="tool-active"><img src="resize_icon.png"></div><div id="single-bond" class="tool-active"><img src="single_bond.svg"></div><div id="double-bond" class="tool-active"><img src="double_bond.svg"></div><div id="triple-bond" class="tool-active"><img src="triple_bond.svg"></div><div id="back-bond" class="tool-active"><img src="back_bond.svg"></div><div id="front-bond" class="tool-active"><img src="front_bond.svg"></div><div id="test">Test!</div><div id="clear">Clear</div><div id="export">Export</div>
+		<div class="tool-active">H</div><div class="tool-active">C</div><div class="tool-active">O</div><div class="tool-active">N</div><div id="electron" class="tool-active"><img src="electron.svg"></div><div id="single-bond" class="tool-active"><img src="single_bond.svg"></div><div id="double-bond" class="tool-active"><img src="double_bond.svg"></div><div id="triple-bond" class="tool-active"><img src="triple_bond.svg"></div><div id="back-bond" class="tool-active"><img src="back_bond.svg"></div><div id="front-bond" class="tool-active"><img src="front_bond.svg"></div><div id="test">Test!</div><div id="clear">Clear</div><div id="export">Export</div>
 	</div>
 </div>
 </body>

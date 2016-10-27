@@ -1,7 +1,9 @@
+
 		var selectedElement = 0;
 		var currentX = 0;
 		var currentY = 0;
 		var currentMatrix = 0;
+		var AtomArray = [];
 		function selectElement(evt){
 			selectedElement = evt.target;
 			currentX = evt.clientX;
@@ -13,8 +15,7 @@
 			// selectedElement.setAttributeNS(null, "onmousemove", "moveElement(evt)");
 			selectedElement.setAttributeNS(null, "onmousemout", "deselectElement(evt)");
 			selectedElement.setAttributeNS(null, "onmouseup", "deselectElement(evt)");
-			
-
+		
 		}
 		function moveElement(evt){
 			dx = evt.clientX - currentX;
@@ -29,14 +30,28 @@
 		function deselectElement(evt){
 			console.log("element deselected")
 			if(selectedElement != 0){
-				selectedElement.removeAttributeNS(null, "onmousemove");
+				// selectedElement.removeAttributeNS(null, "onmousemove");
 				selectedElement.removeAttributeNS(null, "onmouseout");
 				selectedElement.removeAttributeNS(null, "onmouseup");
 				selectedElement = 0;
 				$(window).off("mousemove", moveElement(evt))
 			}
 		}
+		function startBond(start){ //start must be an element object
+			var x = start.x.baseVal[0].value;
+			var y = start.y.baseVal[0].value; // grab x and y coordinates of the object
+			var NS = "http://www.w3.org/2000/svg";
+			////still working on this
+			var element = document.createElementNS(NS, "line");
+			element.setAttributeNS(null, "x1", x);
+			element.setAttributeNS(null, "y1", y);
+			///still working on this
+		}
+		function endBond(end){
+
+		}
 $(document).ready(function(){ 
+	console.log(testVariable);
 	var atomCount = 0;
 	var mousedown = false;
 	selected = null;
@@ -90,6 +105,7 @@ $(document).ready(function(){
 				return this;
 			}
 		}
+		AtomArray.push(obj);
 		return obj; 
 	}
 
@@ -103,10 +119,11 @@ $(document).ready(function(){
 		element.setAttributeNS(null, "font-family", "sans-serif")
 		element.setAttributeNS(null, "class", "element");
 		element.setAttributeNS(null, "transform", "matrix(1 0 0 1 0 0)");
-		element.setAttributeNS(null, "onmousedown", "selectElement(evt)");
+		// element.setAttributeNS(null, "onmousedown", "selectElement(evt)");
 		element.innerHTML = hi;
 		element.id = createAtomId();
-		console.log(CreateElementObject(element));
+		CreateElementObject(element);
+		console.log(AtomArray);
 		document.getElementById("canvas").appendChild(element);
 	}
 // each atom is given an atom ID
@@ -120,13 +137,17 @@ $(document).ready(function(){
 //this function MUST come first
 
 	$(document).on("mousedown", ".element", function(e){
+		var lastClick = click[click.length-1];
+		if (lastClick.behavior == "single-bond"){
+			console.log("i want to bond");
+			startBond(this);
+		}
+		else{
+
+		selectElement(e);
 		mousedown = true; //set this to true in order to distinguish this element from the svg container
-		mx0 = e.pageX; //mouse original x position
-		my0 = e.pageY; //mouse original y position
-		// dragElement(this);
-		// selected = this;
+		}
 	});
-	// *****this seems to be firing BEFORE dragElement() and dragElement must go before moveElement. can't figure out what's happening.//
 	$(document).on("mousemove", function(e){
 		if (selectedElement != 0){
 			moveElement(e);
@@ -187,6 +208,5 @@ $(document).ready(function(){
 			// console.log(thisElement);
 			addClick(e.pageX, e.pageY, "select", thisElement);
 		}
-		// console.log(click);
 	});
 });
