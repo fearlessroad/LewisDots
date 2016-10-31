@@ -20,7 +20,6 @@ $(document).ready(function(){
 	$(document).on("mousedown", ".element", function(e){
 		var lastClick = click[click.length-1];
 		if (lastClick.behavior == "single-bond"){
-			console.log("i want to bond");
 			startBond(this);
 		}
 		else{
@@ -31,6 +30,10 @@ $(document).ready(function(){
 	$(document).on("mousemove", function(e){
 		if (selectedElement != 0){
 			moveElement(e);
+		}
+		else if(bondStarted == true){
+			console.log("bond started is working");
+			manipulateBond(e);
 		}
 	})
 	$(document).on("mouseup", ".element", function(e){

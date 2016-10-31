@@ -4,6 +4,8 @@
 		var currentY = 0;
 		var currentMatrix = 0;
 		var AtomArray = [];
+		var bondStarted = false;
+		var currentBond = null; 
 		function selectElement(evt){
 			selectedElement = evt.target;
 			currentX = evt.clientX;
@@ -39,15 +41,32 @@
 		}
 // bonding 
 		function startBond(start){ //start must be an element object
-			var x = start.x.baseVal[0].value;
-			var y = start.y.baseVal[0].value; // grab x and y coordinates of the object
+			bondStarted = true;  
+			var x = start.x.baseVal[0].value+(start.scrollWidth/2);
+			var y = start.y.baseVal[0].value-(start.scrollHeight/3); // grab x and y coordinates of the object
 			var NS = "http://www.w3.org/2000/svg";
 			////still working on this
 			var element = document.createElementNS(NS, "line");
+			element.setAttributeNS(null, "stroke", "#000000");
+			element.setAttributeNS(null, "stroke-width", "2");
 			element.setAttributeNS(null, "x1", x);
 			element.setAttributeNS(null, "y1", y);
-			///still working on this
+			element.setAttributeNS(null, "x2", x);
+			element.setAttributeNS(null, "y2", y);
+			document.getElementById("canvas").appendChild(element);
+			currentBond = element;
+			currentAtom = start;
 		}
-		function endBond(end){
+		function manipulateBond(e){
+			console.log("inside manipulateBond function")
+			var x1 = currentBond.x1.baseVal.value;
+			var y1 = currentBond.y1.baseVal.value;
+			dx = currentAtom.scrollWidth/2;
+			console.log(currentBond.x1.baseVal.value);
+
+			// console.log(e.pageX);
+			currentBond.setAttributeNS(null, "x2", e.pageX);
+			currentBond.setAttributeNS(null, "y2", e.pageY);
 
 		}
+
