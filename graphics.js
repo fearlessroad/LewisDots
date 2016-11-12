@@ -6,6 +6,9 @@
 		var AtomArray = [];
 		var bondStarted = false;
 		var currentBond = null; 
+		var x = null; 
+		var y = null;
+		var radius = null; 
 		function selectElement(evt){
 			selectedElement = evt.target;
 			currentX = evt.clientX;
@@ -42,8 +45,8 @@
 // bonding 
 		function startBond(start){ //start must be an element object
 			bondStarted = true;  
-			var x = start.x.baseVal[0].value+(start.scrollWidth/2);
-			var y = start.y.baseVal[0].value-(start.scrollHeight/3); // grab x and y coordinates of the object
+			x = start.x.baseVal[0].value+(start.scrollWidth/2);
+			y = start.y.baseVal[0].value-(start.scrollHeight/3); // grab x and y coordinates of the object
 			var NS = "http://www.w3.org/2000/svg";
 			////still working on this
 			var element = document.createElementNS(NS, "line");
@@ -59,12 +62,27 @@
 		}
 		function manipulateBond(e){
 			console.log("inside manipulateBond function")
-			var x1 = currentBond.x1.baseVal.value;
-			var y1 = currentBond.y1.baseVal.value;
-			dx = currentAtom.scrollWidth/2;
+			// var x1 = currentBond.x1.baseVal.value;
+			// var y1 = currentBond.y1.baseVal.value;
+			radius = (((currentAtom.scrollHeight/2)^2)+((currentAtom.scrollWidth/2)^2))^(1/2);
 			console.log(currentBond.x1.baseVal.value);
+			if(e.pageX>x){ // && e.pageY>y){ //quadrant IV (lower right) 
+				currentBond.setAttributeNS(null, "x1", x+(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
+				currentBond.setAttributeNS(null, "y1", y+(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
 
-			// console.log(e.pageX);
+			}
+			// else if(e.pageX>x){ // && e.pageY<y){ //quadrant I (upper right)
+			// 	currentBond.setAttributeNS(null, "x1", x+(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
+			// 	currentBond.setAttributeNS(null, "y1", y+(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
+			// }
+			else if(e.pageX<x){ //&& e.pageY>y){ //quadrant III (lower left)
+				currentBond.setAttributeNS(null, "x1", x-(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
+				currentBond.setAttributeNS(null, "y1", y-(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
+			}
+			// else if(e.pageX<x){// && e.pageY<y){ //quadrant II (upper left)
+			// 	currentBond.setAttributeNS(null, "x1", x-(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
+			// 	currentBond.setAttributeNS(null, "y1", y-(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
+			// }
 			currentBond.setAttributeNS(null, "x2", e.pageX);
 			currentBond.setAttributeNS(null, "y2", e.pageY);
 
