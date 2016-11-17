@@ -4,6 +4,7 @@
 		var currentY = 0;
 		var currentMatrix = 0;
 		var AtomArray = [];
+		var BondArray = [];
 		var bondStarted = false;
 		var currentBond = null; 
 		var x = null; 
@@ -60,12 +61,16 @@
 			currentBond = element;
 			currentAtom = start;
 		}
+		function endBond(end){
+			console.log('hi, i will try to end the bond now')
+
+		}
 		function manipulateBond(e){
-			console.log("inside manipulateBond function")
+			// console.log("inside manipulateBond function")
 			// var x1 = currentBond.x1.baseVal.value;
 			// var y1 = currentBond.y1.baseVal.value;
 			radius = (((currentAtom.scrollHeight/2)^2)+((currentAtom.scrollWidth/2)^2))^(1/2);
-			console.log(currentBond.x1.baseVal.value);
+			// console.log(currentBond.x1.baseVal.value);
 			if(e.pageX>x){ // && e.pageY>y){ //quadrant IV (lower right) 
 				currentBond.setAttributeNS(null, "x1", x+(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
 				currentBond.setAttributeNS(null, "y1", y+(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));

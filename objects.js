@@ -58,4 +58,8 @@
 		atomCount += 1;
 		return atomCount;
 	}
+	var createBondId = function(){
+		bondCount += 1;
+		return bondCount; 
+	}
 

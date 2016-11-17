@@ -19,10 +19,17 @@ $(document).ready(function(){
 //this function MUST come first
 	$(document).on("mousedown", ".element", function(e){
 		var lastClick = click[click.length-1];
-		if (lastClick.behavior == "single-bond"){
+		if (lastClick.behavior == "start-single-bond"){
 			startBond(this);
+			console.log(this.id);
+			addClick(null, null, "end-single-bond", this.innerHTML)
+		}
+		else if (lastClick.behavior == "end-single-bond"){
+			console.log("ending single bond")
+			endBond(this);
 		}
 		else{
+		console.log("testing");
 		selectElement(e);
 		mousedown = true; //set this to true in order to distinguish this element from the svg container
 		}
@@ -33,7 +40,7 @@ $(document).ready(function(){
 		}
 		else if(bondStarted == true){
 			console.log("bond started is working");
-			manipulateBond(e);
+			manipulateBond(e)
 		}
 	})
 	$(document).on("mouseup", ".element", function(e){
@@ -82,7 +89,7 @@ $(document).ready(function(){
 				addClick(e.pageX, e.pageY, "electron", false)
 			}
 			else if($(this)[0].id == "single-bond"){
-				addClick(e.pageX, e.pageY, "single-bond", false)
+				addClick(e.pageX, e.pageY, "start-single-bond", false)
 			}
 		}
 		else{
