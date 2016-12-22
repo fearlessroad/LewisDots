@@ -23,13 +23,15 @@ $(document).ready(function(){
 			startBond(this);
 			console.log(this.id);
 			addClick(null, null, "end-single-bond", this.innerHTML)
+			selected = this.id;
 		}
 		else if (lastClick.behavior == "end-single-bond"){
 			console.log("ending single bond")
+			console.log(this.id);
 			endBond(this);
 		}
 		else{
-		console.log("testing");
+		console.log(click);
 		selectElement(e);
 		mousedown = true; //set this to true in order to distinguish this element from the svg container
 		}

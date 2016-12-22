@@ -62,4 +62,7 @@
 		bondCount += 1;
 		return bondCount; 
 	}
+	var generateBond = function(id1, id2){
+
+	}
 

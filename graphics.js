@@ -30,13 +30,21 @@
 			currentMatrix[5] += dy;
 			newMatrix = "matrix("+currentMatrix.join(' ')+")";
 			selectedElement.setAttributeNS(null, "transform", newMatrix);
+			// console.log(selectedElement.x.baseVal[0].value); 
 			currentX = evt.clientX;
 			currentY = evt.clientY;
+			// selectedElement.x.baseVal[0].value = dx;
+			// selectedElement.y.baseVal[0].value = dy;
+			// selectedElement.setAttributeNS(null, "x", dx);
+			// selectedElement.setAttributeNS(null, "y", dy);
 		}
 		function deselectElement(evt){
 			console.log("element deselected")
 			if(selectedElement != 0){
 				// selectedElement.removeAttributeNS(null, "onmousemove");
+				console.log(selectedElement);
+				console.log(selectedElement.x.baseVal[0].value);
+				console.log(selectedElement.transform.baseVal[0].matrix.e);
 				selectedElement.removeAttributeNS(null, "onmouseout");
 				selectedElement.removeAttributeNS(null, "onmouseup");
 				selectedElement = 0;
