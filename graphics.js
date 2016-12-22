@@ -11,7 +11,7 @@
 		var y = null;
 		var radius = null; 
 		function selectElement(evt){
-			console.log('inside selectElement function')
+			//console.log('inside selectElement function')
 			selectedElement = evt.target;
 			currentX = evt.clientX;
 			currentY = evt.clientY;
@@ -41,12 +41,12 @@
 		}
 		function deselectElement(evt){
 			console.log("element deselected")
-			if(selectedElement != 0){
+			if(selectedElement !== 0){
 				// selectedElement.removeAttributeNS(null, "onmousemove");
-				console.log('hi')
-				console.log(selectedElement.x);
-				console.log(selectedElement.x.baseVal[0].value);
-				console.log(selectedElement.transform.baseVal[0].matrix.e);
+				// console.log('hi');
+				// console.log(selectedElement.x);
+				// console.log(selectedElement.x.baseVal[0].value);
+				// console.log(selectedElement.transform.baseVal[0].matrix.e);
 				selectedElement.removeAttributeNS(null, "onmouseout");
 				selectedElement.removeAttributeNS(null, "onmouseup");
 				selectedElement = 0;
@@ -75,7 +75,8 @@
 			currentAtom = start;
 		}
 		function endBond(end){
-			console.log('hi, i will try to end the bond now')
+			console.log('hi, i will try to end the bond now');
+			console.log(end);
 
 		}
 		function manipulateBond(e){
