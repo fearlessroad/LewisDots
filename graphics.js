@@ -76,9 +76,19 @@
 		}
 		function endBond(end){
 			console.log('hi, i will try to end the bond now');
-			console.log(end);
+			bondStarted = false;
+			currentBond.setAttributeNS(null, "x2", end.x.baseVal[0].value+(end.scrollWidth/2));
+			currentBond.setAttributeNS(null, "y2", end.y.baseVal[0].value-(end.scrollHeight/3));
+			returnObjectWithId(1);
+			console.log(end.id + " is the ending atom");
+			console.log(currentAtom.id + " is the starting atom");
 
 		}
+		function returnObjectWithId(id){
+			for (var i = 0; i<ObjectArray.length-1; i++){
+				console.log(ObjectArray[i]+"inside return Object function");
+				}
+			}
 		function manipulateBond(e){
 			// console.log("inside manipulateBond function")
 			// var x1 = currentBond.x1.baseVal.value;

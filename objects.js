@@ -1,10 +1,10 @@
 //********OBJECT FUNCTIONS***************************//
-	var count = 0;
+	// var count = 0;
 	var valence = null;
 	var objectCount = 0;
 	var ObjectArray = [];
-	var CreateElementObject = function(element){
-			count += 1; 
+	var createAtomObject = function(element){
+			// count += 1; 
 			if(element.innerHTML == "C"){
 				name = "Carbon";
 				valence = 4;
@@ -23,9 +23,10 @@
 			}
 			else{
 				name = "unknown";
+				valence = "unknown";
 			}
 		var obj = {
-			id: count,
+			id: element.id,
 			name: name,
 			valence: valence,
 			self: element,
@@ -53,30 +54,22 @@
 		element.setAttributeNS(null, "transform", "matrix(1 0 0 1 0 0)");
 		// element.setAttributeNS(null, "onmousedown", "selectElement(evt)");
 		element.innerHTML = hi;
-		// element.id = createAtomId();
-		CreateElementObject(element);
+		element.id = createObjectId(element);
+		createAtomObject(element);
+		createObjectArray(element);
 		console.log(AtomArray);
+		console.log(ObjectArray);
 		document.getElementById("canvas").appendChild(element);
 	}
-// each atom is given an atom ID
-	// var createAtomId = function(){
-	// 	atomCount += 1;
-	// 	return atomCount;
-	// }
-	// var createBondId = function(){
-	// 	bondCount += 1;
-	// 	return bondCount; 
-	// }
-	var generateBond = function(id1, id2){
-
+	//this is for keeping track of each individual SVG object on the page-- each one gets its own ID so it can be accessed individually
+	var createObjectId = function(object){
+		 objectCount += 1; 
+		 object.id = objectCount; 
+		 return object.id;
 	}
-	var createObjectID = function(){
-		
-	}
-	var createObjectArray = function(svg){
-		objectCount += 1; 
+	var createObjectArray = function(svg){ 
 		var obj = {
-			id:objectCount,
+			id:svg.id,
 			self:svg 
 		}
 		ObjectArray.push(obj);
