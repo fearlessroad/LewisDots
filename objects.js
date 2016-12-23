@@ -1,6 +1,8 @@
 //********OBJECT FUNCTIONS***************************//
 	var count = 0;
 	var valence = null;
+	var objectCount = 0;
+	var ObjectArray = [];
 	var CreateElementObject = function(element){
 			count += 1; 
 			if(element.innerHTML == "C"){
@@ -18,6 +20,9 @@
 			else if(element.innerHTML == "N"){
 				name = "Nitrogen";
 				valence = 5;
+			}
+			else{
+				name = "unknown";
 			}
 		var obj = {
 			id: count,
@@ -48,21 +53,32 @@
 		element.setAttributeNS(null, "transform", "matrix(1 0 0 1 0 0)");
 		// element.setAttributeNS(null, "onmousedown", "selectElement(evt)");
 		element.innerHTML = hi;
-		element.id = createAtomId();
+		// element.id = createAtomId();
 		CreateElementObject(element);
 		console.log(AtomArray);
 		document.getElementById("canvas").appendChild(element);
 	}
 // each atom is given an atom ID
-	var createAtomId = function(){
-		atomCount += 1;
-		return atomCount;
-	}
-	var createBondId = function(){
-		bondCount += 1;
-		return bondCount; 
-	}
+	// var createAtomId = function(){
+	// 	atomCount += 1;
+	// 	return atomCount;
+	// }
+	// var createBondId = function(){
+	// 	bondCount += 1;
+	// 	return bondCount; 
+	// }
 	var generateBond = function(id1, id2){
 
 	}
-
+	var createObjectID = function(){
+		
+	}
+	var createObjectArray = function(svg){
+		objectCount += 1; 
+		var obj = {
+			id:objectCount,
+			self:svg 
+		}
+		ObjectArray.push(obj);
+		return obj;
+	}
