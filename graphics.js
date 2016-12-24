@@ -76,6 +76,7 @@
 		}
 		function endBond(end){
 			console.log('hi, i will try to end the bond now');
+			console.log('this is object array: '+ ObjectArray[0].id)
 			bondStarted = false;
 			currentBond.setAttributeNS(null, "x2", end.x.baseVal[0].value+(end.scrollWidth/2));
 			currentBond.setAttributeNS(null, "y2", end.y.baseVal[0].value-(end.scrollHeight/3));
@@ -84,10 +85,14 @@
 			console.log(currentAtom.id + " is the starting atom");
 
 		}
+//still working on this 12/23/16 ACD
 		function returnObjectWithId(id){
 			for (var i = 0; i<ObjectArray.length-1; i++){
-				console.log(ObjectArray[i]+"inside return Object function");
+					for (var key in ObjectArray[i]){
+						console.log(ObjectArray[i][key]);
+					}
 				}
+			console.log(ObjectArray.length+" is length of ObjectArray")
 			}
 		function manipulateBond(e){
 			// console.log("inside manipulateBond function")
