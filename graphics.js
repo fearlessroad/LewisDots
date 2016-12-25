@@ -85,15 +85,14 @@
 			console.log(currentAtom.id + " is the starting atom");
 
 		}
-//still working on this 12/23/16 ACD
+//function to find a particular svg object with a specific id
 		function returnObjectWithId(id){
 			for (var i = 0; i<ObjectArray.length-1; i++){
-					for (var key in ObjectArray[i]){
-						console.log(ObjectArray[i][key]);
-					}
+				if (ObjectArray[i].id == id){
+					return ObjectArray[i].self
 				}
-			console.log(ObjectArray.length+" is length of ObjectArray")
 			}
+		}
 		function manipulateBond(e){
 			// console.log("inside manipulateBond function")
 			// var x1 = currentBond.x1.baseVal.value;
