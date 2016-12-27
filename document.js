@@ -26,8 +26,6 @@ $(document).ready(function(){
 			selected = this.id;
 		}
 		else if (lastClick.behavior == "end-single-bond"){
-			console.log("ending single bond")
-			console.log(this.id);
 			endBond(this);
 		}
 		else{
