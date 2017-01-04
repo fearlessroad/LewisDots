@@ -78,3 +78,10 @@
 		ObjectArray.push(obj);
 		return obj;
 	}
+	var findObjectInObjectArrayWithId = function(id){
+		for (var i = 0; i < ObjectArray.length; i++){
+			if (ObjectArray[i].id == id){
+				return ObjectArray[i];
+			}
+		}
+	}

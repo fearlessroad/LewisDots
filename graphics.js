@@ -69,7 +69,12 @@
 			//in progress 1-4-17 ACD
 			console.log(end.id + " is the ending atom");
 			console.log(currentAtom.id + " is the starting atom");
-
+			//here we are adding starting and ending bonds to the bonds array in the BOND svg
+			findObjectInObjectArrayWithId(currentBond.id).bonds.push(currentAtom.id);
+			findObjectInObjectArrayWithId(currentBond.id).bonds.push(end.id);
+			//here we are adding the BOND svg to bond the start atom and the end atom
+			findObjectInObjectArrayWithId(currentAtom.id).bonds.push(currentBond.id);
+			findObjectInObjectArrayWithId(end.id).bonds.push(currentBond.id);
 		}
 //function to find a particular svg object with a specific id
 		function returnObjectWithId(id){
