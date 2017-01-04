@@ -62,7 +62,11 @@
 			bondStarted = false;
 			currentBond.setAttributeNS(null, "x2", end.x.baseVal[0].value+(end.scrollWidth/2));
 			currentBond.setAttributeNS(null, "y2", end.y.baseVal[0].value-(end.scrollHeight/3));
-			returnObjectWithId(1);
+			// returnObjectWithId(1) <-- remove this code because you can simply use getelementwithid(whatever)
+			//we need the new line to have a specific id and we have to create the respective connections between all atoms and lines involved in the bond
+			createObjectId(currentBond);
+			createObjectArray(currentBond);
+			//in progress 1-4-17 ACD
 			console.log(end.id + " is the ending atom");
 			console.log(currentAtom.id + " is the starting atom");
 

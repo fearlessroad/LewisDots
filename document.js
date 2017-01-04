@@ -27,12 +27,15 @@ $(document).ready(function(){
 		}
 		else if (lastClick.behavior == "end-single-bond"){
 			endBond(this);
+			addClick(null, null, "single-bond-ended", this.innerHTML);
 		}
 		else{
 		console.log(click);
 		selectElement(e);
 		mousedown = true; //set this to true in order to distinguish this element from the svg container
 		}
+		console.log(click);
+		console.log(ObjectArray);
 	});
 	$(document).on("mousemove", function(e){
 		if (selectedElement != 0){
@@ -60,11 +63,14 @@ $(document).ready(function(){
 				}
 				else if (lastClick.behavior == "select"){
 					// console.log("selected an element");
+					//this is where a new atom is added to the page
 					newAtom(e.pageX, e.pageY, lastClick.element);
 					addClick(e.pageX, e.pageY, "placed", lastClick.element);
 				}
+				//this is a duplicate piece of code that could be added to the above piece
 				else if(lastClick.behavior == "placed"){
 					// console.log("placed an element")
+					//this is where a new atom is added to the page
 					newAtom(e.pageX, e.pageY, lastClick.element);
 					addClick(e.pageX, e.pageY, "placed", lastClick.element);
 				}

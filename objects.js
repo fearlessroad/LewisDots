@@ -3,6 +3,7 @@
 	var valence = null;
 	var objectCount = 0;
 	var ObjectArray = [];
+	//change this to findValenceNumber(object);
 	var createAtomObject = function(element){
 			// count += 1; 
 			if(element.innerHTML == "C"){
@@ -56,6 +57,7 @@
 		element.innerHTML = hi;
 		element.id = createObjectId(element);
 		createAtomObject(element);
+		//this is where the atom is added to the object array
 		createObjectArray(element);
 		console.log(AtomArray);
 		console.log(ObjectArray);
@@ -70,7 +72,8 @@
 	var createObjectArray = function(svg){ 
 		var obj = {
 			id:svg.id,
-			self:svg 
+			self:svg,
+			bonds: []
 		}
 		ObjectArray.push(obj);
 		return obj;
