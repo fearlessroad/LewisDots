@@ -32,6 +32,9 @@
 			currentY = e.clientY;
 			//manipulating the bond that is attached to the atom 
 			console.log(findObjectInObjectArrayWithId(selectedElement.id).bonds);
+			//create a for loop that loops through the bonds array (should find each attached BOND svg)
+				//use document.getElementById for the bond id to edit the bond itself (we need x1,y1 and x2,y2)
+					// each bond svg should then have a bonds array with the attached ATOMS. it should be possible to then create another for loop that allows you to find the id for each of those atoms, grap the x/y coordinates, then put those into the bond svg start or end coordinates
 		}
 		function deselectElement(e){
 			console.log("element deselected")
