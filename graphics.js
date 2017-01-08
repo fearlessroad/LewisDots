@@ -33,8 +33,20 @@
 			//manipulating the bond that is attached to the atom 
 			console.log(findObjectInObjectArrayWithId(selectedElement.id).bonds);
 			//create a for loop that loops through the bonds array (should find each attached BOND svg)
+			//function function function 
+				for (var i = 0; i<findObjectInObjectArrayWithId(selectedElement.id).bonds.length; i++){ // finding the bonds of the ATOM that is currently beind moved(selectedElement)
+					var moveElementBondId = findObjectInObjectArrayWithId(selectedElement.id).bonds[i] // this should return the id of the bond itself. 
+					//now you need to set currentBond to THIS BOND
+					currentBond = document.getElementById(moveElementBondId);
+					//The bond itself, when searched for its "bond" array in the ObjectArray, should return TWO atom ids. 
+					var moveElementBondedAtomId = extractBondedAtomId(moveElementBondId);
+					//console.log(moveElementBondedAtomId);
+					
+					//One will be the selected object (selectedElement.id), the other will be the attached atom. We need to grab the attached atom x,y coordinates by looking it up with document.getElementById (the one that is NOT selectedElement)
+				}
+			//end of function 
 				//use document.getElementById for the bond id to edit the bond itself (we need x1,y1 and x2,y2)
-					// each bond svg should then have a bonds array with the attached ATOMS. it should be possible to then create another for loop that allows you to find the id for each of those atoms, grap the x/y coordinates, then put those into the bond svg start or end coordinates
+					// each bond svg should then have a bonds array with the attached ATOMS. it should be possible to then create another for loop that allows you to find the id for each of those atoms, grab the x/y coordinates, then put those into the bond svg start or end coordinates
 		}
 		function deselectElement(e){
 			console.log("element deselected")
