@@ -30,6 +30,8 @@
 			selectedElement.setAttributeNS(null, "transform", newMatrix); 
 			currentX = e.clientX;
 			currentY = e.clientY;
+			//manipulating the bond that is attached to the atom 
+			console.log(findObjectInObjectArrayWithId(selectedElement.id).bonds);
 		}
 		function deselectElement(e){
 			console.log("element deselected")
@@ -76,7 +78,7 @@
 			findObjectInObjectArrayWithId(currentAtom.id).bonds.push(currentBond.id);
 			findObjectInObjectArrayWithId(end.id).bonds.push(currentBond.id);
 		}
-//function to find a particular svg object with a specific id
+		//function to find a particular svg object with a specific id
 		function returnObjectWithId(id){
 			for (var i = 0; i<ObjectArray.length; i++){
 				if (ObjectArray[i].id == id){
