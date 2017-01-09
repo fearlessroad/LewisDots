@@ -39,11 +39,16 @@
 					//now you need to set currentBond to THIS BOND
 					currentBond = document.getElementById(moveElementBondId);
 					//The bond itself, when searched for its "bond" array in the ObjectArray, should return TWO atom ids. 
-					var moveElementBondedAtomId = extractBondedAtomId(moveElementBondId);
+					var moveElementBondedAtomId = extractBondedAtomId(moveElementBondId); // this should return the Bonded Atom Id so we now have that Id and the Bond Id
 					//console.log(moveElementBondedAtomId);
-					
 					//One will be the selected object (selectedElement.id), the other will be the attached atom. We need to grab the attached atom x,y coordinates by looking it up with document.getElementById (the one that is NOT selectedElement)
+					currentBond.setAttributeNS(null, "x2", selectedElement.x.baseVal[0].value+currentMatrix[4]);
+					currentBond.setAttributeNS(null, "y2", selectedElement.y.baseVal[0].value+currentMatrix[5]);
 				}
+				// console.log('x-coordinate of selectedElement: '+selectedElement.x.baseVal[0].value);
+				// console.log('y-coordinate of selectedElement: '+selectedElement.y.baseVal[0].value);
+				// console.log('x-coordinate of bondedAtom: '+document.getElementById(moveElementBondedAtomId).x.baseVal[0].value)
+				// console.log('y-coordinate of bondedAtom: '+document.getElementById(moveElementBondedAtomId).y.baseVal[0].value)
 			//end of function 
 				//use document.getElementById for the bond id to edit the bond itself (we need x1,y1 and x2,y2)
 					// each bond svg should then have a bonds array with the attached ATOMS. it should be possible to then create another for loop that allows you to find the id for each of those atoms, grab the x/y coordinates, then put those into the bond svg start or end coordinates
