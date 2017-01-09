@@ -33,20 +33,7 @@
 			//manipulating the bond that is attached to the atom 
 			console.log(findObjectInObjectArrayWithId(selectedElement.id).bonds);
 			//create a for loop that loops through the bonds array (should find each attached BOND svg)
-			//function function function 
-				for (var i = 0; i<findObjectInObjectArrayWithId(selectedElement.id).bonds.length; i++){ // finding the bonds of the ATOM that is currently beind moved(selectedElement)
-					var moveElementBondId = findObjectInObjectArrayWithId(selectedElement.id).bonds[i] // this should return the id of the bond itself. 
-					//now you need to set currentBond to THIS BOND
-					currentBond = document.getElementById(moveElementBondId);
-					//The bond itself, when searched for its "bond" array in the ObjectArray, should return TWO atom ids. 
-					var moveElementBondedAtomId = extractBondedAtomId(moveElementBondId); // this should return the Bonded Atom Id so we now have that Id and the Bond Id
-					//console.log(moveElementBondedAtomId);
-					//One will be the selected object (selectedElement.id), the other will be the attached atom. We need to grab the attached atom x,y coordinates by looking it up with document.getElementById (the one that is NOT selectedElement)
-					currentBond.setAttributeNS(null, "x2", selectedElement.x.baseVal[0].value+currentMatrix[4]);
-					currentBond.setAttributeNS(null, "y2", selectedElement.y.baseVal[0].value+currentMatrix[5]);
-				}
-				//current problem: January 8, 2017: 
-				//need to distinguish between the x1,y1 and x2,y2 of the bond while we move atoms. determine which atom is bonded to x1,y1 side and which atom is bonded to x2,y2 side. then we know which side of the bond to edit in what way... right? 
+			extractBondedAtomCoordinates();//in graphics_helper
 		}
 		function deselectElement(e){
 			console.log("element deselected")
