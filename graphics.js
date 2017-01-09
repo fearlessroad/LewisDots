@@ -45,13 +45,8 @@
 					currentBond.setAttributeNS(null, "x2", selectedElement.x.baseVal[0].value+currentMatrix[4]);
 					currentBond.setAttributeNS(null, "y2", selectedElement.y.baseVal[0].value+currentMatrix[5]);
 				}
-				// console.log('x-coordinate of selectedElement: '+selectedElement.x.baseVal[0].value);
-				// console.log('y-coordinate of selectedElement: '+selectedElement.y.baseVal[0].value);
-				// console.log('x-coordinate of bondedAtom: '+document.getElementById(moveElementBondedAtomId).x.baseVal[0].value)
-				// console.log('y-coordinate of bondedAtom: '+document.getElementById(moveElementBondedAtomId).y.baseVal[0].value)
-			//end of function 
-				//use document.getElementById for the bond id to edit the bond itself (we need x1,y1 and x2,y2)
-					// each bond svg should then have a bonds array with the attached ATOMS. it should be possible to then create another for loop that allows you to find the id for each of those atoms, grab the x/y coordinates, then put those into the bond svg start or end coordinates
+				//current problem: January 8, 2017: 
+				//need to distinguish between the x1,y1 and x2,y2 of the bond while we move atoms. determine which atom is bonded to x1,y1 side and which atom is bonded to x2,y2 side. then we know which side of the bond to edit in what way... right? 
 		}
 		function deselectElement(e){
 			console.log("element deselected")
