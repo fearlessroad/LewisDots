@@ -6,22 +6,18 @@ var extractBondedAtomCoordinates = function(){
 		//now you need to set currentBond to THIS BOND
 		currentBond = document.getElementById(moveElementBondId);
 		//The bond itself, when searched for its "bond" array in the ObjectArray, should return TWO atom ids. 
-		var moveElementBondedAtomId = extractBondedAtomId(moveElementBondId); // this should return the Bonded Atom Id so we now have that Id and the Bond Id
+		var moveElementBondedAtomId = extractBondedAtomId(moveElementBondId); // this should return the Bonded Atom Id AND a designation of whether its part of the x1 or x2 side of the line, so we now have that Id and the Bond Id AND we know which side of the line svg we are dealing with
 		console.log("function works"+extractBondedMatrix(moveElementBondedAtomId));
 		console.log(bondedMatrix); // the matrix extracted from the bonded Atom Id
-		console.log("this is the bonded atom matrix: "+document.getElementById(moveElementBondedAtomId[1]).getAttributeNS(null, "transform"));//this logs the elements transform matrix
-		console.log("this is the bonded atom current x,y coordinates: "+document.getElementById(moveElementBondedAtomId[1]).x.baseVal[0].value+","+document.getElementById(moveElementBondedAtomId[1]).y.baseVal[0].value)
+		console.log("this is the bonded atom matrix: "+document.getElementById(moveElementBondedAtomId[2]).getAttributeNS(null, "transform"));//this logs the elements transform matrix
+		console.log("this is the bonded atom current x,y coordinates: "+document.getElementById(moveElementBondedAtomId[2]).x.baseVal[0].value+","+document.getElementById(moveElementBondedAtomId[2]).y.baseVal[0].value)
 		//One will be the selected object (selectedElement.id), the other will be the attached atom. We need to grab the attached atom x,y coordinates by looking it up with document.getElementById (the one that is NOT selectedElement)
-		//console.log("testing: "+document.getElementById(moveElementBondedAtomId));
-		currentBond.setAttributeNS(null, "x2", selectedElement.x.baseVal[0].value+currentMatrix[4]);
-		currentBond.setAttributeNS(null, "y2", selectedElement.y.baseVal[0].value+currentMatrix[5]);
+		currentBond.setAttributeNS(null, moveElementBondedAtomId[0], selectedElement.x.baseVal[0].value+currentMatrix[4]);
+		currentBond.setAttributeNS(null, moveElementBondedAtomId[1], selectedElement.y.baseVal[0].value+currentMatrix[5]);
 	}
-	//current problem: January 8, 2017: 
-	//need to distinguish between the x1,y1 and x2,y2 of the bond while we move atoms. determine which atom is bonded to x1,y1 side and which atom is bonded to x2,y2 side. then we know which side of the bond to edit in what way... right? 
-	//simple option 1: use distance formula? determine to which end of the bond the selected element is closest. THAT bond will follow the new atom. 
 }
 var extractBondedMatrix = function(moveElementBondedAtomId){
-	bondedMatrix = document.getElementById(moveElementBondedAtomId[1]).getAttributeNS(null, "transform").slice(7, -1).split(' ');
+	bondedMatrix = document.getElementById(moveElementBondedAtomId[2]).getAttributeNS(null, "transform").slice(7, -1).split(' '); //moveElementBondedAtomId is an array, the first position [0] should be a designation of whether we are looking at x1 or x2, the second [1] should give y1 or y2, but [2] will give the id
 	for (var i = 0; i < bondedMatrix.length; i++){
 		bondedMatrix[i] = parseFloat(bondedMatrix[i]);
 	}
@@ -31,16 +27,18 @@ var extractBondedAtomId = function(moveElementBondId)	{
 	for (var j=0; j<findObjectInObjectArrayWithId(moveElementBondId).bonds.length; j++){
 		if (findObjectInObjectArrayWithId(moveElementBondId).bonds[j] != selectedElement.id){
 			var bob = new Array();
-			bob[1] = findObjectInObjectArrayWithId(moveElementBondId).bonds[j];
-			if(j==0){
+			bob[2] = findObjectInObjectArrayWithId(moveElementBondId).bonds[j];
+			if(j==0){ //checking to see whether we are at first or second position (this will tell us whether we are dealing with the x1 position or x2 position)
 				bob[0] = "x1";
+				bob[1] = "y1";
 				return bob;
 			}
 			else{
 				bob[0] = "x2";
+				bob[1] = "y2";
 				return bob;	
 			}
-			// console.log("this atom is attached to atom number: "+findObjectInObjectArrayWithId(moveElementBondId).bonds[j])
+			// bob is a length 3 matrix where bob[0] is x-position, bob[1] is y-position, and bob[2] is actual id
 		}
 	}
 }
