@@ -10,6 +10,7 @@
 		var x = null; 
 		var y = null;
 		var radius = null; 
+		var NS = "http://www.w3.org/2000/svg";
 		function selectElement(evt){
 			selectedElement = evt.target;
 			currentX = evt.clientX;
@@ -49,7 +50,7 @@
 			bondStarted = true;  
 			x = start.x.baseVal[0].value+(start.scrollWidth/2);
 			y = start.y.baseVal[0].value-(start.scrollHeight/3); // grab x and y coordinates of the object
-			var NS = "http://www.w3.org/2000/svg";
+			//var NS = "http://www.w3.org/2000/svg";
 			////still working on this
 			var element = document.createElementNS(NS, "line");
 			element.setAttributeNS(null, "stroke", "#000000");

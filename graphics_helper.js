@@ -7,10 +7,10 @@ var extractBondedAtomCoordinates = function(){
 		currentBond = document.getElementById(moveElementBondId);
 		//The bond itself, when searched for its "bond" array in the ObjectArray, should return TWO atom ids. 
 		var moveElementBondedAtomId = extractBondedAtomId(moveElementBondId); // this should return the Bonded Atom Id AND a designation of whether its part of the x1 or x2 side of the line, so we now have that Id and the Bond Id AND we know which side of the line svg we are dealing with
-		console.log("function works"+extractBondedMatrix(moveElementBondedAtomId));
-		console.log(bondedMatrix); // the matrix extracted from the bonded Atom Id
-		console.log("this is the bonded atom matrix: "+document.getElementById(moveElementBondedAtomId[2]).getAttributeNS(null, "transform"));//this logs the elements transform matrix
-		console.log("this is the bonded atom current x,y coordinates: "+document.getElementById(moveElementBondedAtomId[2]).x.baseVal[0].value+","+document.getElementById(moveElementBondedAtomId[2]).y.baseVal[0].value)
+		//console.log("function works"+extractBondedMatrix(moveElementBondedAtomId));
+		//console.log(bondedMatrix); // the matrix extracted from the bonded Atom Id
+		//console.log("this is the bonded atom matrix: "+document.getElementById(moveElementBondedAtomId[2]).getAttributeNS(null, "transform"));//this logs the elements transform matrix
+		//console.log("this is the bonded atom current x,y coordinates: "+document.getElementById(moveElementBondedAtomId[2]).x.baseVal[0].value+","+document.getElementById(moveElementBondedAtomId[2]).y.baseVal[0].value)
 		//One will be the selected object (selectedElement.id), the other will be the attached atom. We need to grab the attached atom x,y coordinates by looking it up with document.getElementById (the one that is NOT selectedElement)
 		currentBond.setAttributeNS(null, moveElementBondedAtomId[0], selectedElement.x.baseVal[0].value+currentMatrix[4]);
 		currentBond.setAttributeNS(null, moveElementBondedAtomId[1], selectedElement.y.baseVal[0].value+currentMatrix[5]);

@@ -21,7 +21,7 @@ $(document).ready(function(){
 		var lastClick = click[click.length-1];
 		if (lastClick.behavior == "start-single-bond"){
 			startBond(this);
-			console.log(this.id);
+			//console.log(this.id);
 			addClick(null, null, "end-single-bond", this.innerHTML)
 			selected = this.id;
 		}
@@ -30,19 +30,19 @@ $(document).ready(function(){
 			addClick(null, null, "single-bond-ended", this.innerHTML);
 		}
 		else{
-		console.log(click);
+		//console.log(click);
 		selectElement(e);
 		mousedown = true; //set this to true in order to distinguish this element from the svg container
 		}
-		console.log(click);
-		console.log(ObjectArray);
+		// console.log(click);
+		// console.log(ObjectArray);
 	});
 	$(document).on("mousemove", function(e){
 		if (selectedElement != 0){
 			moveElement(e);
 		}
 		else if(bondStarted == true){
-			console.log("bond started is working");
+			//console.log("bond started is working");
 			manipulateBond(e)
 		}
 	})
@@ -86,10 +86,10 @@ $(document).ready(function(){
 	})
 	$('.tool-active').mousedown(function(e){
 		if ($(this)[0].innerText == ""){
-			console.log($(this)[0].id);
+			//console.log($(this)[0].id);
 			if($(this)[0].id == "edit-svg"){
 				addClick(e.pageX, e.pageY, "edit", false)
-				console.log(click);
+				//console.log(click);
 			}
 			else if($(this)[0].id == "electron"){
 				addClick(e.pageX, e.pageY, "electron", false)
