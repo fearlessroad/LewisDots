@@ -47,9 +47,11 @@
 		}
 // bonding 
 		function startBond(start){ //start must be an element object
-			bondStarted = true;  
-			x = start.x.baseVal[0].value+(start.scrollWidth/2);
-			y = start.y.baseVal[0].value-(start.scrollHeight/3); // grab x and y coordinates of the object
+			bondStarted = true;  //here!!!
+			console.log(start.id)
+			console.log(extractMatrix(start.id)[4]);
+			x = start.x.baseVal[0].value+(start.scrollWidth/2)+extractMatrix(start.id)[4];
+			y = start.y.baseVal[0].value-(start.scrollHeight/3)+ extractMatrix(start.id)[5]; // grab x and y coordinates of the object
 			//var NS = "http://www.w3.org/2000/svg";
 			////still working on this
 			var element = document.createElementNS(NS, "line");
@@ -65,8 +67,8 @@
 		}
 		function endBond(end){
 			bondStarted = false;
-			currentBond.setAttributeNS(null, "x2", end.x.baseVal[0].value+(end.scrollWidth/2));
-			currentBond.setAttributeNS(null, "y2", end.y.baseVal[0].value-(end.scrollHeight/3));
+			currentBond.setAttributeNS(null, "x2", end.x.baseVal[0].value+(end.scrollWidth/2)+extractMatrix(end.id)[4]);
+			currentBond.setAttributeNS(null, "y2", end.y.baseVal[0].value-(end.scrollHeight/3)+extractMatrix(end.id)[5]);
 			// returnObjectWithId(1) <-- remove this code because you can simply use getelementwithid(whatever)
 			//we need the new line to have a specific id and we have to create the respective connections between all atoms and lines involved in the bond
 			createObjectId(currentBond);

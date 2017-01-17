@@ -1,7 +1,7 @@
 var bondedMatrix = null;
 var extractBondedAtomCoordinates = function(){
 	//function function function 
-	for (var i = 0; i<findObjectInObjectArrayWithId(selectedElement.id).bonds.length; i++){ // finding the bonds of the ATOM that is currently beind moved(selectedElement)
+	for (var i = 0; i<findObjectInObjectArrayWithId(selectedElement.id).bonds.length; i++){ // finding the bonds of the ATOM that is currently being moved(selectedElement)
 		var moveElementBondId = findObjectInObjectArrayWithId(selectedElement.id).bonds[i] // this should return the id of the bond itself. 
 		//now you need to set currentBond to THIS BOND
 		currentBond = document.getElementById(moveElementBondId);
@@ -10,7 +10,7 @@ var extractBondedAtomCoordinates = function(){
 		//console.log("function works"+extractBondedMatrix(moveElementBondedAtomId));
 		//console.log(bondedMatrix); // the matrix extracted from the bonded Atom Id
 		//console.log("this is the bonded atom matrix: "+document.getElementById(moveElementBondedAtomId[2]).getAttributeNS(null, "transform"));//this logs the elements transform matrix
-		//console.log("this is the bonded atom current x,y coordinates: "+document.getElementById(moveElementBondedAtomId[2]).x.baseVal[0].value+","+document.getElementById(moveElementBondedAtomId[2]).y.baseVal[0].value)
+		console.log("the bonded atom current x,y coordinates are: "+document.getElementById(moveElementBondedAtomId[2]).x.baseVal[0].value+","+document.getElementById(moveElementBondedAtomId[2]).y.baseVal[0].value)
 		//One will be the selected object (selectedElement.id), the other will be the attached atom. We need to grab the attached atom x,y coordinates by looking it up with document.getElementById (the one that is NOT selectedElement)
 		currentBond.setAttributeNS(null, moveElementBondedAtomId[0], selectedElement.x.baseVal[0].value+currentMatrix[4]);
 		currentBond.setAttributeNS(null, moveElementBondedAtomId[1], selectedElement.y.baseVal[0].value+currentMatrix[5]);
@@ -41,4 +41,11 @@ var extractBondedAtomId = function(moveElementBondId)	{
 			// bob is a length 3 matrix where bob[0] is x-position, bob[1] is y-position, and bob[2] is actual id
 		}
 	}
+}
+var extractMatrix = function(atomId){
+	bondedMatrix = document.getElementById(atomId).getAttributeNS(null, "transform").slice(7, -1).split(' ');
+		for (var i = 0; i < bondedMatrix.length; i++){
+			bondedMatrix[i] = parseFloat(bondedMatrix[i]);
+		}
+		return bondedMatrix;
 }
