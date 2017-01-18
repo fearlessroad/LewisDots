@@ -67,11 +67,18 @@ var manipulateFinishedBond = function(){
 	if (extractBondedAtomId[0]=="x2"){
 		radius2 = getRadius(bondedAtomSVG);
 		radius1 = getRadius(currentAtomSVG);
-		x1 = 
+		// x2 = bondedAtomSVG.x.baseVal[0].value;
+		// y2 = bondedAtomSVG.y.baseVal[0].value;	
+		// x1 = currentAtomSVG.x.baseVal[0].value;
+		// y1 = currentAtomSVG.y.baseVal[0].value; 
 	}
 	else{
 		radius2 = getRadius(currentAtomSVG);
 		radius1 = getRadius(bondedAtomSVG);
+		// x1 = bondedAtomSVG.x.baseVal[0].value;
+		// y1 = bondedAtomSVG.y.baseVal[0].value;	
+		// x2 = currentAtomSVG.x.baseVal[0].value;
+		// y2 = currentAtomSVG.y.baseVal[0].value; 
 	}
 }
 var getRadius = function(SVG){
@@ -79,5 +86,23 @@ var getRadius = function(SVG){
 	return rad; 
 }
 var determineRadialCoordinate = function(radius, SVG){
-	if ()
+	var coords = getRadialCoordinates(radius, SVG);
+	if (currentAtomSVG.x.baseVal[0].value > bondedAtomSVG.x.baseVal[0].value){
+		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[1], x + coords[0]);
+		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[2], y+ coords[1]);
+	}
+	else if(currentAtomSVG.x.baseVal[0].value < bondedAtomSVG.x.baseVal[0].value){
+		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[1], x - coords[0]);
+		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[2], y - coords[1]);
+	}
+	//currentBond.setAttributes goes here ***** January 18 2017
+}
+var getRadialCoordinates = function(radius, SVG){
+	x = SVG.x.baseVal[0].value + (SVG.scrollWidth/2)+extractMatrix(SVG.id)[4];
+	y = SVG.y.baseVal[0].value + (SVG.scrollWidth/2)-extractMatrix(SVG.id)[5];
+	var radx = (1/2)*radius*Math.cos(Math.atan((currentAtomSVG.y.baseVal[0].value-y)/(currentAtomSVG.x.baseVal[0].value-x)));
+	var rady = (1/2)*radius*Math.sin(Math.atan((currentAtomSVG.y.baseVal[0].value-y)/(currentAtomSVG.x.baseVal[0].value-x)));
+	var arr = new Array;
+	arr.push(radx, rady);
+	return arr; 
 }
