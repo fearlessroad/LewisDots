@@ -1,5 +1,6 @@
 var bondedMatrix = null;
 var extractBondedAtomCoordinates = function(){
+	console.log('inside extract bonded atom coords')
 	//function function function 
 	for (var i = 0; i<findObjectInObjectArrayWithId(selectedElement.id).bonds.length; i++){ // finding the bonds of the ATOM that is currently being moved(selectedElement)
 		var moveElementBondId = findObjectInObjectArrayWithId(selectedElement.id).bonds[i] // this should return the id of the bond itself. 
