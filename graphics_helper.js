@@ -30,13 +30,13 @@ var extractBondedAtomId = function(moveElementBondId)	{
 			var bob = new Array();
 			bob[2] = findObjectInObjectArrayWithId(moveElementBondId).bonds[j];
 			if(j==0){ //checking to see whether we are at first or second position (this will tell us whether we are dealing with the x1 position or x2 position)
-				bob[0] = "x1";
-				bob[1] = "y1";
+				bob[0] = "x2";
+				bob[1] = "y2";
 				return bob;
 			}
 			else{
-				bob[0] = "x2";
-				bob[1] = "y2";
+				bob[0] = "x1";
+				bob[1] = "y1";
 				return bob;	
 			}
 			// bob is a length 3 matrix where bob[0] is x-position, bob[1] is y-position, and bob[2] is actual id
