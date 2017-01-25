@@ -89,7 +89,7 @@ var determineRadialCoordinate = function(radius, SVG){
 	var coords = getRadialCoordinates(radius, SVG);
 	if (currentAtomSVG.x.baseVal[0].value > bondedAtomSVG.x.baseVal[0].value){
 		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[1], x + coords[0]);
-		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[2], y+ coords[1]);
+		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[2], y + coords[1]);
 	}
 	else if(currentAtomSVG.x.baseVal[0].value < bondedAtomSVG.x.baseVal[0].value){
 		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[1], x - coords[0]);
@@ -102,8 +102,8 @@ var determineRadialCoordinate = function(radius, SVG){
 	
 }
 var getRadialCoordinates = function(radius, SVG){
-	x = SVG.x.baseVal[0].value + (SVG.scrollWidth/2)+extractMatrix(SVG.id)[4];
-	y = SVG.y.baseVal[0].value + (SVG.scrollWidth/2)-	extractMatrix(SVG.id)[5];
+	x = SVG.x.baseVal[0].value + (SVG.scrollWidth/2)+extractMatrix(SVG.id)[4]; //this is the adjusted actual x value according to the transform matrix
+	y = SVG.y.baseVal[0].value + (SVG.scrollWidth/2)-	extractMatrix(SVG.id)[5]; //adjusted actual y value according to transform matrix
 	var radx = (1/2)*radius*Math.cos(Math.atan((currentAtomSVG.y.baseVal[0].value-y)/(currentAtomSVG.x.baseVal[0].value-x)));
 	var rady = (1/2)*radius*Math.sin(Math.atan((currentAtomSVG.y.baseVal[0].value-y)/(currentAtomSVG.x.baseVal[0].value-x)));
 	var arr = new Array;
