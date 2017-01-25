@@ -95,11 +95,15 @@ var determineRadialCoordinate = function(radius, SVG){
 		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[1], x - coords[0]);
 		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[2], y - coords[1]);
 	}
-	//currentBond.setAttributes goes here ***** January 18 2017
+	currentBond.setAttributeNS(null, "x1", null);
+	currentBond.setAttributeNS(null, "x2", null);
+	currentBond.setAttributeNS(null, "y1", null);
+	currentBond.setAttributeNS(null, "y2", null);
+	
 }
 var getRadialCoordinates = function(radius, SVG){
 	x = SVG.x.baseVal[0].value + (SVG.scrollWidth/2)+extractMatrix(SVG.id)[4];
-	y = SVG.y.baseVal[0].value + (SVG.scrollWidth/2)-extractMatrix(SVG.id)[5];
+	y = SVG.y.baseVal[0].value + (SVG.scrollWidth/2)-	extractMatrix(SVG.id)[5];
 	var radx = (1/2)*radius*Math.cos(Math.atan((currentAtomSVG.y.baseVal[0].value-y)/(currentAtomSVG.x.baseVal[0].value-x)));
 	var rady = (1/2)*radius*Math.sin(Math.atan((currentAtomSVG.y.baseVal[0].value-y)/(currentAtomSVG.x.baseVal[0].value-x)));
 	var arr = new Array;
