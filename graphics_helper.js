@@ -13,16 +13,11 @@ var handleBondElementMovement = function(){
 		currentBondId = currentAtomObject.bonds[i];
 		currentBondSVG = document.getElementById(currentBondId);
 		currentBondObject = findObjectInObjectArrayWithId(currentBondId);
+		console.log(currentBondObject);
 	////----------------------------------------
 		setBondedAtomVariables(currentBondObject); 
-
-		var moveElementBondedAtomId = extractBondedAtomId(currentBondId);// this should return the Bonded Atom Id AND a designation of whether its part of the x1 or x2 side of the line, so we now have that Id and the Bond Id AND we know which side of the line svg we are dealing with
-		bondedAtomSVG = document.getElementById(moveElementBondedAtomId[2]); 
-		//console.log("function works"+extractBondedMatrix(moveElementBondedAtomId));
-		//console.log(bondedMatrix); // the matrix extracted from the bonded Atom Id
-		//console.log("this is the bonded atom matrix: "+document.getElementById(moveElementBondedAtomId[2]).getAttributeNS(null, "transform"));//this logs the elements transform matrix
-		console.log("the bonded atom current x,y coordinates are: "+bondedAtomSVG.x.baseVal[0].value+","+bondedAtomSVG.y.baseVal[0].value)
-		//One will be the selected object (selectedElement.id), the other will be the attached atom. We need to grab the attached atom x,y coordinates by looking it up with document.getElementById (the one that is NOT selectedElement)
+	////----------------------------------------
+		setNewCoordinates();
 		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[0], selectedElement.x.baseVal[0].value+currentMatrix[4]);
 		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[1], selectedElement.y.baseVal[0].value+currentMatrix[5]);
 	}
