@@ -3,15 +3,13 @@ var bondedAtomSVG = null;
 var currentAtomObject = null; 
 var currentAtomSVG = null; 
 var currentBondSVG = null; 
-
 var handleBondElementMovement = function(){
 	console.log('inside extract bonded atom coords')
 	currentAtomObject = findObjectInObjectArrayWithId(selectedElement.id);
 	currentAtomSVG = document.getElementById(selectedElement.id);
-	//creating a for loop? to return the id of the bond itself. 
-		//now you need to set currentBondSVG to THIS BOND
+	for (var i = 0; i<currentAtomObject.bonds.length; i++){ 
+		currentBondId = currentAtomObject.bonds[i];
 		currentBondSVG = document.getElementById(currentBondId);
-		//The bond itself, when searched for its "bond" array in the ObjectArray, should return TWO atom ids. 
 		var moveElementBondedAtomId = extractBondedAtomId(currentBondId);// this should return the Bonded Atom Id AND a designation of whether its part of the x1 or x2 side of the line, so we now have that Id and the Bond Id AND we know which side of the line svg we are dealing with
 		bondedAtomSVG = document.getElementById(moveElementBondedAtomId[2]); 
 		//console.log("function works"+extractBondedMatrix(moveElementBondedAtomId));
@@ -33,19 +31,19 @@ var extractBondedMatrix = function(moveElementBondedAtomId){
 var extractBondedAtomId = function(currentBondId)	{
 	for (var j=0; j<findObjectInObjectArrayWithId(currentBondId).bonds.length; j++){
 		if (findObjectInObjectArrayWithId(currentBondId).bonds[j] != selectedElement.id){
-			var bob = new Array();
-			bob[2] = findObjectInObjectArrayWithId(currentBondId).bonds[j];
-			if(j==0){ //checking to see whether we are at first or second position (this will tell us whether we are dealing with the x1 position or x2 position)
-				bob[0] = "x2";
-				bob[1] = "y2";
-				return bob;
-			}
-			else{
-				bob[0] = "x1";
-				bob[1] = "y1";
-				return bob;	
-			}
-			// bob is a length 3 matrix where bob[0] is x-position, bob[1] is y-position, and bob[2] is actual id
+			// var bob = new Array();
+			// bob[2] = findObjectInObjectArrayWithId(currentBondId).bonds[j];
+			// if(j==0){ //checking to see whether we are at first or second position (this will tell us whether we are dealing with the x1 position or x2 position)
+			// 	bob[0] = "x2";
+			// 	bob[1] = "y2";
+			// 	return bob;
+			// }
+			// else{
+			// 	bob[0] = "x1";
+			// 	bob[1] = "y1";
+			// 	return bob;	
+			// }
+			// // bob is a length 3 matrix where bob[0] is x-position, bob[1] is y-position, and bob[2] is actual id
 		}
 	}
 }
