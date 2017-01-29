@@ -31,7 +31,7 @@ function moveElement(e){
 	currentX = e.clientX;
 	currentY = e.clientY;
 	console.log(findObjectInObjectArrayWithId(selectedElement.id).bonds);
-	extractBondedAtomCoordinates();//in graphics_helper
+	handleBondElementMovement();
 }
 function deselectElement(e){
 	console.log("element deselected")
@@ -51,13 +51,9 @@ var newAtom = function(x, y, hi){
 	element.setAttributeNS(null, "font-family", "sans-serif")
 	element.setAttributeNS(null, "class", "element");
 	element.setAttributeNS(null, "transform", "matrix(1 0 0 1 0 0)");
-	// element.setAttributeNS(null, "onmousedown", "selectElement(evt)");
 	element.innerHTML = hi;
 	element.id = createObjectId(element);
-	// createAtomObject(element);
-	//this is where the atom is added to the object array
 	createObjectArray(element);
-	// console.log(AtomArray);
 	console.log(ObjectArray);
 	document.getElementById("canvas").appendChild(element);
 }

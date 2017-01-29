@@ -22,10 +22,10 @@ function endBond(end){
 	createObjectId(currentBond);
 	createObjectArray(currentBond);
 	findObjectInObjectArrayWithId(currentBond.id).bonds.push({
-		"x1":currentAtom.id, 
-		"x2":end.id
+			"x1":currentAtom.id, 
+			"x2":end.id
 		});
-	//here we are adding the BOND svg to bond the start atom and the end atom
+	console.log(findObjectInObjectArrayWithId(currentBond.id).bonds);
 	findObjectInObjectArrayWithId(currentAtom.id).bonds.push(currentBond.id);
 	findObjectInObjectArrayWithId(end.id).bonds.push(currentBond.id);
 }
