@@ -1,8 +1,10 @@
 var bondedMatrix = null;
 var bondedAtomSVG = null;
-var currentAtomObject = null; 
+var bondedAtomObject = null; 
 var currentAtomSVG = null; 
+var currentAtomObject = null; 
 var currentBondSVG = null; 
+var currentBondObject = null;
 var handleBondElementMovement = function(){
 	console.log('inside extract bonded atom coords')
 	currentAtomObject = findObjectInObjectArrayWithId(selectedElement.id);
@@ -10,6 +12,10 @@ var handleBondElementMovement = function(){
 	for (var i = 0; i<currentAtomObject.bonds.length; i++){ 
 		currentBondId = currentAtomObject.bonds[i];
 		currentBondSVG = document.getElementById(currentBondId);
+		currentBondObject = findObjectInObjectArrayWithId(currentBondId);
+	////----------------------------------------
+		setBondedAtomVariables(currentBondObject); 
+
 		var moveElementBondedAtomId = extractBondedAtomId(currentBondId);// this should return the Bonded Atom Id AND a designation of whether its part of the x1 or x2 side of the line, so we now have that Id and the Bond Id AND we know which side of the line svg we are dealing with
 		bondedAtomSVG = document.getElementById(moveElementBondedAtomId[2]); 
 		//console.log("function works"+extractBondedMatrix(moveElementBondedAtomId));
@@ -28,9 +34,16 @@ var extractBondedMatrix = function(moveElementBondedAtomId){
 	}
 	return bondedMatrix;
 }
-var extractBondedAtomId = function(currentBondId)	{
-	for (var j=0; j<findObjectInObjectArrayWithId(currentBondId).bonds.length; j++){
-		if (findObjectInObjectArrayWithId(currentBondId).bonds[j] != selectedElement.id){
+var setBondedAtomVariables = function(currentBondObject)	{
+	var bondsObject = currentBondObject.bonds[0];
+	for (prop in bondsObject){
+		if (bondsObject[prop] != selectedElement.id){
+			bondedAtomObject = findObjectInObjectArrayWithId(bondsObject[prop]);
+			bondedAtomSVG = document.getElementById(bondsObject[prop]);
+		}
+	}
+	//for (var j=0; j<findObjectInObjectArrayWithId(currentBondId).bonds.length; j++){
+		//if (findObjectInObjectArrayWithId(currentBondId).bonds[j] != selectedElement.id){
 			// var bob = new Array();
 			// bob[2] = findObjectInObjectArrayWithId(currentBondId).bonds[j];
 			// if(j==0){ //checking to see whether we are at first or second position (this will tell us whether we are dealing with the x1 position or x2 position)
@@ -44,8 +57,8 @@ var extractBondedAtomId = function(currentBondId)	{
 			// 	return bob;	
 			// }
 			// // bob is a length 3 matrix where bob[0] is x-position, bob[1] is y-position, and bob[2] is actual id
-		}
-	}
+		//}
+	//}
 }
 var extractMatrix = function(atomId){
 	bondedMatrix = document.getElementById(atomId).getAttributeNS(null, "transform").slice(7, -1).split(' ');
