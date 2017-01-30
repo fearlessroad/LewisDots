@@ -1,4 +1,5 @@
 var bondedMatrix = null;
+// var matrix = null;
 var bondedAtomSVG = null;
 var bondedAtomObject = null; 
 var currentAtomSVG = null; 
@@ -25,22 +26,18 @@ var handleBondElementMovement = function(){
 var setNewCoordinates = function(){
 	for (key in currentBondObject.bonds[0]){
 		var el = document.getElementById(currentBondObject.bonds[0][key]);
-		currentBondSVG.setAttributeNS(null, key, el.x.baseVal[0].value);
+		var matrix = getMatrix(el);
+		currentBondSVG.setAttributeNS(null, key, el.x.baseVal[0].value+matrix[4]);
 		if (key == "x1"){
-			currentBondSVG.setAttributeNS(null, "y1", el.y.baseVal[0].value);	
+			currentBondSVG.setAttributeNS(null, "y1", el.y.baseVal[0].value+matrix[5]);	
 		}
 		else{
-			currentBond.setAttributeNS(null, "y2", el.y.baseVal[0].value)
-		}
-		
+			currentBond.setAttributeNS(null, "y2", el.y.baseVal[0].value+matrix[5]);
+		}	
 	}
-	//currentBondSVG.setAttributeNS(null, "x1", something)
-	//currentBondSVG.setAttributeNS(null, "x2", something)
-	//currentBondSVG.setAttributeNS(null, "y1", something)
-	//currentBondSVG.setAttributeNS(null, "y2", something)
 }
-var extractBondedMatrix = function(moveElementBondedAtomId){
-	bondedMatrix = document.getElementById(moveElementBondedAtomId[2]).getAttributeNS(null, "transform").slice(7, -1).split(' '); //moveElementBondedAtomId is an array, the first position [0] should be a designation of whether we are looking at x1 or x2, the second [1] should give y1 or y2, but [2] will give the id
+var getMatrix = function(SVG){
+	bondedMatrix = SVG.getAttributeNS(null, "transform").slice(7, -1).split(' ');
 	for (var i = 0; i < bondedMatrix.length; i++){
 		bondedMatrix[i] = parseFloat(bondedMatrix[i]);
 	}
@@ -54,23 +51,6 @@ var setBondedAtomVariables = function(currentBondObject)	{
 			bondedAtomSVG = document.getElementById(bondsObject[prop]);
 		}
 	}
-	//for (var j=0; j<findObjectInObjectArrayWithId(currentBondId).bonds.length; j++){
-		//if (findObjectInObjectArrayWithId(currentBondId).bonds[j] != selectedElement.id){
-			// var bob = new Array();
-			// bob[2] = findObjectInObjectArrayWithId(currentBondId).bonds[j];
-			// if(j==0){ //checking to see whether we are at first or second position (this will tell us whether we are dealing with the x1 position or x2 position)
-			// 	bob[0] = "x2";
-			// 	bob[1] = "y2";
-			// 	return bob;
-			// }
-			// else{
-			// 	bob[0] = "x1";
-			// 	bob[1] = "y1";
-			// 	return bob;	
-			// }
-			// // bob is a length 3 matrix where bob[0] is x-position, bob[1] is y-position, and bob[2] is actual id
-		//}
-	//}
 }
 var extractMatrix = function(atomId){
 	bondedMatrix = document.getElementById(atomId).getAttributeNS(null, "transform").slice(7, -1).split(' ');
