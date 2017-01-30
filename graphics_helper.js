@@ -19,8 +19,6 @@ var handleBondElementMovement = function(){
 		setBondedAtomVariables(currentBondObject); 
 	////----------------------------------------
 		setNewCoordinates();
-		//currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[0], selectedElement.x.baseVal[0].value+currentMatrix[4]);
-		//currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[1], selectedElement.y.baseVal[0].value+currentMatrix[5]);
 	}
 }
 var setNewCoordinates = function(){
