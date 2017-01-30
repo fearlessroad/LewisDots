@@ -7,14 +7,12 @@ var currentAtomObject = null;
 var currentBondSVG = null; 
 var currentBondObject = null;
 var handleBondElementMovement = function(){
-	console.log('handleBondElementMovement')
 	currentAtomObject = findObjectInObjectArrayWithId(selectedElement.id);
 	currentAtomSVG = document.getElementById(selectedElement.id);
 	for (var i = 0; i<currentAtomObject.bonds.length; i++){ 
 		currentBondId = currentAtomObject.bonds[i];
 		currentBondSVG = document.getElementById(currentBondId);
 		currentBondObject = findObjectInObjectArrayWithId(currentBondId);
-		//console.log(currentBondObject);
 	////----------------------------------------
 		setBondedAtomVariables(currentBondObject); 
 	////----------------------------------------
@@ -67,18 +65,10 @@ var manipulateFinishedBond = function(){
 	if (extractBondedAtomId[0]=="x2"){
 		radius2 = getRadius(bondedAtomSVG);
 		radius1 = getRadius(currentAtomSVG);
-		// x2 = bondedAtomSVG.x.baseVal[0].value;
-		// y2 = bondedAtomSVG.y.baseVal[0].value;	
-		// x1 = currentAtomSVG.x.baseVal[0].value;
-		// y1 = currentAtomSVG.y.baseVal[0].value; 
 	}
 	else{
 		radius2 = getRadius(currentAtomSVG);
 		radius1 = getRadius(bondedAtomSVG);
-		// x1 = bondedAtomSVG.x.baseVal[0].value;
-		// y1 = bondedAtomSVG.y.baseVal[0].value;	
-		// x2 = currentAtomSVG.x.baseVal[0].value;
-		// y2 = currentAtomSVG.y.baseVal[0].value; 
 	}
 }
 var getRadius = function(SVG){
