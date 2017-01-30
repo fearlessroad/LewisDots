@@ -6,21 +6,38 @@ var currentAtomObject = null;
 var currentBondSVG = null; 
 var currentBondObject = null;
 var handleBondElementMovement = function(){
-	console.log('inside extract bonded atom coords')
+	console.log('handleBondElementMovement')
 	currentAtomObject = findObjectInObjectArrayWithId(selectedElement.id);
 	currentAtomSVG = document.getElementById(selectedElement.id);
 	for (var i = 0; i<currentAtomObject.bonds.length; i++){ 
 		currentBondId = currentAtomObject.bonds[i];
 		currentBondSVG = document.getElementById(currentBondId);
 		currentBondObject = findObjectInObjectArrayWithId(currentBondId);
-		console.log(currentBondObject);
+		//console.log(currentBondObject);
 	////----------------------------------------
 		setBondedAtomVariables(currentBondObject); 
 	////----------------------------------------
 		setNewCoordinates();
-		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[0], selectedElement.x.baseVal[0].value+currentMatrix[4]);
-		currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[1], selectedElement.y.baseVal[0].value+currentMatrix[5]);
+		//currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[0], selectedElement.x.baseVal[0].value+currentMatrix[4]);
+		//currentBondSVG.setAttributeNS(null, moveElementBondedAtomId[1], selectedElement.y.baseVal[0].value+currentMatrix[5]);
 	}
+}
+var setNewCoordinates = function(){
+	for (key in currentBondObject.bonds[0]){
+		var el = document.getElementById(currentBondObject.bonds[0][key]);
+		currentBondSVG.setAttributeNS(null, key, el.x.baseVal[0].value);
+		if (key == "x1"){
+			currentBondSVG.setAttributeNS(null, "y1", el.y.baseVal[0].value);	
+		}
+		else{
+			currentBond.setAttributeNS(null, "y2", el.y.baseVal[0].value)
+		}
+		
+	}
+	//currentBondSVG.setAttributeNS(null, "x1", something)
+	//currentBondSVG.setAttributeNS(null, "x2", something)
+	//currentBondSVG.setAttributeNS(null, "y1", something)
+	//currentBondSVG.setAttributeNS(null, "y2", something)
 }
 var extractBondedMatrix = function(moveElementBondedAtomId){
 	bondedMatrix = document.getElementById(moveElementBondedAtomId[2]).getAttributeNS(null, "transform").slice(7, -1).split(' '); //moveElementBondedAtomId is an array, the first position [0] should be a designation of whether we are looking at x1 or x2, the second [1] should give y1 or y2, but [2] will give the id
