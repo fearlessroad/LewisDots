@@ -47,7 +47,7 @@ var newAtom = function(x, y, hi){
 	var element = document.createElementNS(NS, "text");
 	element.setAttributeNS(null, "x", x-30);
 	element.setAttributeNS(null, "y", y-15);
-	element.setAttributeNS(null, "font-size", "50");
+	element.setAttributeNS(null, "font-size", 50);
 	element.setAttributeNS(null, "font-family", "sans-serif")
 	element.setAttributeNS(null, "class", "element");
 	element.setAttributeNS(null, "transform", "matrix(1 0 0 1 0 0)");
