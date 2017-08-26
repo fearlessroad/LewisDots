@@ -48,20 +48,21 @@ function endBond(end){
 }
 function manipulateBond(e){
 	//radius = (((currentAtom.scrollHeight/2)^2)+((currentAtom.scrollWidth/2)^2))^(1/2);
-	// radius = (((currentAtom.getAttributeNS(null, "font-size")/2)^2)+(currentAtom.getAttributeNS(null, "font-size")/3)^2)^(1/2);
-	// if(e.pageX>x){ // && e.pageY>y){ //quadrant IV (lower right) 
-	// 	currentBond.setAttributeNS(null, "x1", x+(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
-	// 	currentBond.setAttributeNS(null, "y1", y+(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
-	// }
-	// else if(e.pageX<x){ //&& e.pageY>y){ //quadrant III (lower left)
-	// 	currentBond.setAttributeNS(null, "x1", x-(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
-	// 	currentBond.setAttributeNS(null, "y1", y-(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
-	// }
-	// currentBond.setAttributeNS(null, "x2", e.pageX);
-	// currentBond.setAttributeNS(null, "y2", e.pageY);
-
-
+	radius = (((currentAtom.getAttributeNS(null, "font-size")/2)^2)+(currentAtom.getAttributeNS(null, "font-size")/3)^2)^(1/2);
+	console.log(radius);
+	if(e.pageX>x){ // && e.pageY>y){ //quadrant IV (lower right) 
+		currentBond.setAttributeNS(null, "x1", x-(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
+		currentBond.setAttributeNS(null, "y1", y+(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
+	}
+	else if(e.pageX<x){ //&& e.pageY>y){ //quadrant III (lower left)
+		currentBond.setAttributeNS(null, "x1", x+(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
+		currentBond.setAttributeNS(null, "y1", y-(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
+	}
 	currentBond.setAttributeNS(null, "x2", e.pageX);
 	currentBond.setAttributeNS(null, "y2", e.pageY);
+
+
+	// currentBond.setAttributeNS(null, "x2", e.pageX);
+	// currentBond.setAttributeNS(null, "y2", e.pageY);
 
 }
