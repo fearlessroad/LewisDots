@@ -54,6 +54,6 @@ var newAtom = function(x, y, hi){
 	element.innerHTML = hi;
 	element.id = createObjectId(element);
 	createObjectArray(element);
-	console.log(ObjectArray);
+	//console.log(ObjectArray);
 	document.getElementById("canvas").appendChild(element);
 }

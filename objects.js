@@ -29,7 +29,7 @@ var findValenceNumber = function(object){ //takes the atom object, assigns a val
 		 object.id = objectCount; 
 		 return object.id;
 	}
-	var createObjectArray = function(svg){ 
+	var createObjectArray = function(svg){ //only contains atoms and bonds
 		var obj = {
 			id:svg.id,
 			self:svg,
@@ -44,7 +44,7 @@ var findValenceNumber = function(object){ //takes the atom object, assigns a val
 		for (var i = 0; i < ObjectArray.length; i++){
 			if (ObjectArray[i].id == id){
 				return ObjectArray[i];
-			}
+			} 
 		}
 	}
 	function returnObjectWithId(id){
