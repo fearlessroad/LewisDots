@@ -32,7 +32,7 @@ var setNewCoordinates = function(){
 	console.log(firstMatrix[4]+"firstMatrix[4]");
 	var firstRadius = getRadius(firstSVG);
 	var secondRadius = getRadius(secondSVG);
-	if (firstX>secondX){
+	if (firstX>=secondX){
 		console.log('firstX >second X');
 		currentBondSVG.setAttributeNS(null, "x1", firstX-(1/2)*firstRadius*Math.cos(Math.atan((secondY-firstY)/(secondX-firstX))));
 		currentBondSVG.setAttributeNS(null,"y1", firstY-(1/2)*firstRadius*Math.sin(Math.atan((secondY-firstY)/(secondX-firstX))));
@@ -92,7 +92,7 @@ var extractMatrix = function(atomId){
 // 	}
 // }
 var getRadius = function(SVG){
-	var rad = (((SVG.getAttributeNS(null, "font-size")/2)^2)+((SVG.getAttributeNS(null, "font-size")/3)^2))^(1/2);
+	var rad = ((((SVG.getAttributeNS(null, "font-size")/2)^2)+((SVG.getAttributeNS(null, "font-size")/3)^2))^(1/2))+20;
 	return rad; 
 }
 // var determineRadialCoordinate = function(radius, SVG){

@@ -68,7 +68,7 @@ function endBond(end){
 function manipulateBond(e){ //manipulating bond after the bond was started, THIS HAS NOTHING TO DO WITH MOVING THE ELEMENTS
 	//radius = (((currentAtom.scrollHeight/2)^2)+((currentAtom.scrollWidth/2)^2))^(1/2);
 	console.log('manipulating bond')
-	radius = (((currentAtom.getAttributeNS(null, "font-size")/2)^2)+(currentAtom.getAttributeNS(null, "font-size")/3)^2)^(1/2);
+	radius = getRadius(currentAtom)
 	matrix = getMatrix(currentAtom)
 	console.log(radius);
 	startX = parseFloat(currentAtom.getAttributeNS(null, "x"))+(currentAtom.getAttributeNS(null, "font-size")/2.5)+matrix[4];
@@ -84,7 +84,7 @@ function manipulateBond(e){ //manipulating bond after the bond was started, THIS
 		currentBond.setAttributeNS(null, "x1", startX-(1/2)*radius*Math.cos(Math.atan((e.pageY-startY)/(e.pageX-startX))));
 		currentBond.setAttributeNS(null, "y1", startY-(1/2)*radius*Math.sin(Math.atan((e.pageY-startY)/(e.pageX-startX))));
 	}
-	else if(e.pageX>startX){ //&& e.pageY>y){ //quadrant III (lower left)
+	else if(e.pageX>=startX){ //&& e.pageY>y){ //quadrant III (lower left)
 		//console.log(x)
 		//console.log(e.pageX)
 		//currentBond.setAttributeNS(null, "x1", x+(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
