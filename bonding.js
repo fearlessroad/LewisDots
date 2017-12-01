@@ -35,35 +35,37 @@ function endBond(end){
 	console.log(end.x.baseVal[0].value);
 	//currentBond.setAttributeNS(null, "x2", end.x.baseVal[0].value+(end.scrollWidth/2)+extractMatrix(end.id)[4]);
 	//currentBond.setAttributeNS(null, "y2", end.y.baseVal[0].value-(end.scrollHeight/3)+extractMatrix(end.id)[5]);
-	endX = parseFloat(end.getAttributeNS(null, "x"));
-	endY = parseFloat(end.getAttributeNS(null, "y"));
-	endmat = end.getAttributeNS(null, "transform").split('(')[1].split(')')[0].split(' ');
-	endmatX = parseFloat(endmat[4]);
-	endmatY = parseFloat(endmat[5]);
-	startX = parseFloat(currentAtom.getAttributeNS(null, "x"));
-	startY = parseFloat(currentAtom.getAttributeNS(null, "y"));
-	startmat = currentAtom.getAttributeNS(null, "transform").split('(')[1].split(')')[0].split(' ');
-	startmatX = parseFloat(startmat[4]);
-	startmatY = parseFloat(startmat[5]);
-	correction = currentAtom.getAttributeNS(null, "font-size")/3;
-	console.log(correction)
-	console.log(endmat)
-	console.log("matX"+endmatX)
-	console.log(endX+endmatX)
-	console.log(currentBond)
+	endmat = getMatrix(end)
+	endX = parseFloat(end.getAttributeNS(null, "x"))+(end.getAttributeNS(null, "font-size")/2.5)+endmat[4];
+	endY = parseFloat(end.getAttributeNS(null, "y"))-(end.getAttributeNS(null, "font-size")/2.7)+endmat[5];
+	//endmatX = parseFloat(endmat[4]);
+	//endmatY = parseFloat(endmat[5]);
+	//startX = parseFloat(currentAtom.getAttributeNS(null, "x"));
+	//startY = parseFloat(currentAtom.getAttributeNS(null, "y"));
+	//startmat = currentAtom.getAttributeNS(null, "transform").split('(')[1].split(')')[0].split(' ');
+	//startmatX = parseFloat(startmat[4]);
+	//startmatY = parseFloat(startmat[5]);
+	//correction = currentAtom.getAttributeNS(null, "font-size")/3;
+	//console.log(correction)
+	//console.log(endmat)
+	//console.log("matX"+endmatX)
+	//console.log(endX+endmatX)
+	//console.log(currentBond)
 	//newMatY = end.getAttributeNS(null, "transform").split('(')[1]
 	//currentBond.setAttributeNS(null, "x2", endX+matX);
-	radius = (((end.getAttributeNS(null, "font-size")/2)^2)+(end.getAttributeNS(null, "font-size")/3)^2)^(1/2);
+	radius = getRadius(end)
 	//we want to apply the radius trick to the end point of the bond. 
 	//startX = currentAtom.getAttributeNS(null, "x")
 	//startY = currentAtom.getAttributeNS(null, "y")
 	if(parseFloat(currentAtom.getAttributeNS(null, "x")) > parseFloat(end.getAttributeNS(null, "x"))){
-		currentBond.setAttributeNS(null, "x2", endmatX+endX+(1/2)*radius*Math.cos(Math.atan((endY-startY)/(endX-startX))));
-		currentBond.setAttributeNS(null, "y2", endmatY+endY-(1/2)*radius*Math.sin(Math.atan((startY-endY)/(startX-endX))));
+		currentBond.setAttributeNS(null, "x2", endX+(1/2)*radius*Math.cos(Math.atan((startY-endY)/(startX-endX))));
+		currentBond.setAttributeNS(null, "y2", endY+(1/2)*radius*Math.sin(Math.atan((startY-endY)/(startX-endX))));
 	}
 	else if(parseFloat(startX)<parseFloat(endX)){
-		currentBond.setAttributeNS(null, "x2", endmatX+endX-(1/2)*radius*Math.cos(Math.atan((endY-startY)/(endX-startX))));
-		currentBond.setAttributeNS(null, "y2", endmatY+endY-(1/2)*radius*Math.sin(Math.atan((endY-startY)/(endX-startX))));
+		currentBond.setAttributeNS(null, "x2", endX-(1/2)*radius*Math.cos(Math.atan((startY-endY)/(startX-endX))));
+		currentBond.setAttributeNS(null, "y2", endY-(1/2)*radius*Math.sin(Math.atan((startY-endY)/(startX-endX))));
+		//currentBond.setAttributeNS(null, "x2", endmatX+endX-(1/2)*radius*Math.cos(Math.atan((endY-startY)/(endX-startX))));
+		//currentBond.setAttributeNS(null, "y2", endmatY+endY-(1/2)*radius*Math.sin(Math.atan((endY-startY)/(startX-endX))));
 	}
 
 
@@ -85,27 +87,28 @@ function manipulateBond(e){ //manipulating bond after the bond was started, THIS
 	//radius = (((currentAtom.scrollHeight/2)^2)+((currentAtom.scrollWidth/2)^2))^(1/2);
 	console.log('manipulating bond')
 	radius = (((currentAtom.getAttributeNS(null, "font-size")/2)^2)+(currentAtom.getAttributeNS(null, "font-size")/3)^2)^(1/2);
+	matrix = getMatrix(currentAtom)
 	console.log(radius);
-	startX = parseFloat(currentAtom.getAttributeNS(null, "x"));
-	startY = parseFloat(currentAtom.getAttributeNS(null, "y"));
-	startmat = currentAtom.getAttributeNS(null, "transform").split('(')[1].split(')')[0].split(' ');
-	startmatX = parseFloat(startmat[4]);
-	startmatY = parseFloat(startmat[5]);
-	if(e.pageX>x){ // && e.pageY>y){ //quadrant IV (lower right) 
-		console.log(x)
-		console.log(e.pageX)
+	startX = parseFloat(currentAtom.getAttributeNS(null, "x"))+(currentAtom.getAttributeNS(null, "font-size")/2.5)+matrix[4];
+	startY = parseFloat(currentAtom.getAttributeNS(null, "y"))-(currentAtom.getAttributeNS(null, "font-size")/2.7)+matrix[5];
+	//startmat = currentAtom.getAttributeNS(null, "transform").split('(')[1].split(')')[0].split(' ');
+	//startmatX = parseFloat(startmat[4]);
+	//startmatY = parseFloat(startmat[5]);
+	if(e.pageX<startX){ // && e.pageY>y){ //quadrant IV (lower right) 
+		//console.log(x)
+		//console.log(e.pageX)
 		//currentBond.setAttributeNS(null, "x1", x-(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
 		//currentBond.setAttributeNS(null, "y1", y+(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
-		currentBond.setAttributeNS(null, "x1", startmatX+x+(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
-		currentBond.setAttributeNS(null, "y1", startmatY+y+(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
+		currentBond.setAttributeNS(null, "x1", startX-(1/2)*radius*Math.cos(Math.atan((e.pageY-startY)/(e.pageX-startX))));
+		currentBond.setAttributeNS(null, "y1", startY-(1/2)*radius*Math.sin(Math.atan((e.pageY-startY)/(e.pageX-startX))));
 	}
-	else if(e.pageX<x){ //&& e.pageY>y){ //quadrant III (lower left)
-		console.log(x)
-		console.log(e.pageX)
+	else if(e.pageX>startX){ //&& e.pageY>y){ //quadrant III (lower left)
+		//console.log(x)
+		//console.log(e.pageX)
 		//currentBond.setAttributeNS(null, "x1", x+(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
 		//currentBond.setAttributeNS(null, "y1", y-(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
-		currentBond.setAttributeNS(null, "x1", startmatX+x-(1/2)*radius*Math.cos(Math.atan((e.pageY-y)/(e.pageX-x))));
-		currentBond.setAttributeNS(null, "y1", startmatY+y-(1/2)*radius*Math.sin(Math.atan((e.pageY-y)/(e.pageX-x))));
+		currentBond.setAttributeNS(null, "x1", startX-(1/2)*radius*Math.cos(Math.atan((e.pageY-startY)/(e.pageX-startX))));
+		currentBond.setAttributeNS(null, "y1", startY+(1/2)*radius*Math.sin(Math.atan((e.pageY-startY)/(e.pageX-startX))));
 	}
 	currentBond.setAttributeNS(null, "x2", e.pageX);
 	currentBond.setAttributeNS(null, "y2", e.pageY);

@@ -29,6 +29,10 @@ $(document).ready(function(){
 			endBond(this);
 			addClick(null, null, "single-bond-ended", this.innerHTML);
 		}
+		else if (lastClick.behavior == "add-electron"){
+			addElectron(this);
+			console.log('addElectron function completed')
+		}
 		else{
 		//console.log(click);
 		selectElement(e);
@@ -92,7 +96,7 @@ $(document).ready(function(){
 				//console.log(click);
 			}
 			else if($(this)[0].id == "electron"){
-				addClick(e.pageX, e.pageY, "electron", false)
+				addClick(e.pageX, e.pageY, "add-electron", false)
 			}
 			else if($(this)[0].id == "single-bond"){
 				addClick(e.pageX, e.pageY, "start-single-bond", false)

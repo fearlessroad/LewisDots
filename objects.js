@@ -34,6 +34,7 @@ var findValenceNumber = function(object){ //takes the atom object, assigns a val
 			id:svg.id,
 			self:svg,
 			bonds: [], 
+			electrons:[],
 			valence: findValenceNumber(svg)
 		}
 		ObjectArray.push(obj);
