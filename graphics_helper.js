@@ -24,13 +24,9 @@ var setNewCoordinates = function(){
 	var firstMatrix = getMatrix(firstSVG);
 	var secondSVG = document.getElementById(currentBondObject.bonds[0]["x2"]);
 	var secondMatrix = getMatrix(secondSVG);
-	//var firstX = firstSVG.x.baseVal[0].value+(firstSVG.scrollWidth/2)+firstMatrix[4];
 	var firstX = firstSVG.x.baseVal[0].value+(firstSVG.getAttributeNS(null, "font-size")/2.5)+firstMatrix[4];
-	//var firstY = firstSVG.y.baseVal[0].value-(firstSVG.scrollHeight/3)+firstMatrix[5];
 	var firstY = firstSVG.y.baseVal[0].value-(firstSVG.getAttributeNS(null, "font-size")/2.7)+firstMatrix[5];
-	//var secondX = secondSVG.x.baseVal[0].value+(secondSVG.scrollWidth/2)+secondMatrix[4];
 	var secondX = secondSVG.x.baseVal[0].value+(secondSVG.getAttributeNS(null, "font-size")/2.5)+secondMatrix[4];
-	//var secondY = secondSVG.y.baseVal[0].value-(secondSVG.scrollHeight/3)+secondMatrix[5];
 	var secondY = secondSVG.y.baseVal[0].value-(secondSVG.getAttributeNS(null, "font-size")/2.7)+secondMatrix[5];
 	console.log(firstX+"firstX");
 	console.log(firstMatrix[4]+"firstMatrix[4]");
