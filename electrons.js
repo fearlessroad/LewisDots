@@ -42,8 +42,8 @@ function getElectronCoordinates(atom, coords){
 	else if(coords.length == 1){
 		xpos = (2*cx)-coords[0][0];
 		ypos = (2*cy)-coords[0][1];
-	}
 	//for 1 site, slap electron opposite
+	}
 	else if(coords.length ==2){
 		console.log('2 bonds')
 		xpos = cx;
