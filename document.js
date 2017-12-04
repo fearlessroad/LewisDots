@@ -31,7 +31,8 @@ $(document).ready(function(){
 		}
 		else if (lastClick.behavior == "add-electron"){
 			addElectron(this);
-			console.log('addElectron function completed')
+			console.log('addElectron function completed');
+			addClick(null, null, "add-electron", false);
 		}
 		else{
 		//console.log(click);
@@ -43,11 +44,11 @@ $(document).ready(function(){
 	});
 	$(document).on("mousemove", function(e){
 		if (selectedElement != 0){
-			moveElement(e);
+			moveElement(e);//graphics.js
 		}
 		else if(bondStarted == true){
 			//console.log("bond started is working");
-			manipulateBond(e)
+			manipulateBond(e)//bonding.js
 		}
 	})
 	$(document).on("mouseup", ".element", function(e){
@@ -89,6 +90,8 @@ $(document).ready(function(){
 		// paint = false;
 	})
 	$('.tool-active').mousedown(function(e){
+		$(".tool-active").css("background-color", "white");
+		$(this).css("background-color", "#e6f3ff");
 		if ($(this)[0].innerText == ""){
 			//console.log($(this)[0].id);
 			if($(this)[0].id == "edit-svg"){
@@ -99,6 +102,8 @@ $(document).ready(function(){
 				addClick(e.pageX, e.pageY, "add-electron", false)
 			}
 			else if($(this)[0].id == "single-bond"){
+				//console.log(this);
+				//$(this).css("background-color", "gray");
 				addClick(e.pageX, e.pageY, "start-single-bond", false)
 			}
 		}

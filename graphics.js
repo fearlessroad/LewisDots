@@ -27,10 +27,12 @@ function moveElement(e){
 	currentMatrix[4] += dx;
 	currentMatrix[5] += dy;
 	newMatrix = "matrix("+currentMatrix.join(' ')+")";
+	console.log(selectedElement);
 	selectedElement.setAttributeNS(null, "transform", newMatrix); 
+	//console.log(selectedElement.getAttributeNS(null, "transform"));
 	currentX = e.clientX;
 	currentY = e.clientY;
-	console.log(findObjectInObjectArrayWithId(selectedElement.id).bonds);
+	//console.log(findObjectInObjectArrayWithId(selectedElement.id).bonds);
 	handleBondElementMovement();
 }
 function deselectElement(e){
@@ -39,7 +41,8 @@ function deselectElement(e){
 		selectedElement.removeAttributeNS(null, "onmouseout");
 		selectedElement.removeAttributeNS(null, "onmouseup");
 		selectedElement = 0;
-		$(window).off("mousemove", moveElement(e))
+		//$(window).off("mousemove", moveElement(e))
+		$(document).off("mousemove", moveElement(e))
 	}
 }
 var newAtom = function(x, y, hi){

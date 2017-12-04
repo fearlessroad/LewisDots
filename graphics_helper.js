@@ -9,6 +9,8 @@ var currentBondObject = null;
 var handleBondElementMovement = function(){
 	currentAtomObject = findObjectInObjectArrayWithId(selectedElement.id);
 	currentAtomSVG = document.getElementById(selectedElement.id);
+	//console.log('currentAtomSVG');
+	//console.log(currentAtomSVG);
 	for (var i = 0; i<currentAtomObject.bonds.length; i++){ 
 		currentBondId = currentAtomObject.bonds[i];
 		currentBondSVG = document.getElementById(currentBondId);
@@ -17,6 +19,10 @@ var handleBondElementMovement = function(){
 		setBondedAtomVariables(currentBondObject); 
 	////----------------------------------------
 		setNewCoordinates();
+	}
+	if(currentAtomObject.electrons.length != 0){
+		electronSVGList = currentAtomObject.electrons;
+		console.log(electronSVGList);
 	}
 }
 var setNewCoordinates = function(){
