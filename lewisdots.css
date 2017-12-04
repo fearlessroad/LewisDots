@@ -26,6 +26,7 @@
 	display:inline-block;
 	vertical-align:top;
 	cursor:pointer;
+	background-color:white;
 }
 .tool-active:hover{
 	border:1px solid black;
